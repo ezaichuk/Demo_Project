@@ -149,7 +149,7 @@
     <profile>
       <id>testhost</id>
       <properties>
-        <site.url>http://testhost/</site.url>
+        <site.url>http://qa-u1604.vlab.lohika.com:8080/</site.url>
       </properties>
     </profile>
     <profile>
@@ -169,10 +169,17 @@
       </activation>
     </profile>
     <profile>
-      <id>grid</id>
+      <id>grid_local</id>
       <properties>
         <grid.url>http://localhost:4444/wd/hub/</grid.url>
       </properties>
     </profile>
+    <profile>
+      <id>grid_remote</id>
+      <properties>
+        <grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub</grid.url>
+      </properties>
+    </profile>
+
   </profiles>
 </project>
