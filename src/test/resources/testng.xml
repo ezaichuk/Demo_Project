@@ -3,7 +3,7 @@
 <suite name="Tests" verbose="5">
   <test name="Main Page tests">
     <classes>
-      <class name="test.LoginAsViewer"/>
+      <class name="test.MainPage.LoginAsViewerAndLogout"/>
     </classes>
   </test>  
 </suite>

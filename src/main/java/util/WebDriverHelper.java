@@ -32,4 +32,21 @@ public class WebDriverHelper {
         return (element != null);
     }
 
+   public static boolean WaitTillVisible (WebElement webElement, WebDriver driver){
+
+        WebDriverWait wait = null;
+
+        try {
+            wait = new WebDriverWait(driver, Long.parseLong(PropertyLoader.loadProperty("timeToTimeout")), Long.parseLong(PropertyLoader.loadProperty("timeToSleep")));
+        }catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            return (false);
+        }
+
+        WebElement element = null;
+        element = wait.until(ExpectedConditions.visibilityOf(webElement));
+        return (element != null);
+    }
+
 }

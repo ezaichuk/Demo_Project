@@ -131,7 +131,7 @@
       </properties>
     </profile>
     <!-- environments -->
-    <profile>
+    <!--<profile>
       <id>localhost</id>
       <properties>
         <site.url>http://localhost/</site.url>
@@ -147,19 +147,19 @@
       </properties>
     </profile>
     <profile>
+      <id>prodhost</id>
+      <properties>
+        <site.url>http://prodhost.com/</site.url>
+      </properties>
+    </profile>-->
+    <profile>
       <id>testhost</id>
       <properties>
         <site.url>http://qa-u1604.vlab.lohika.com:8080/</site.url>
       </properties>
     </profile>
-    <profile>
-      <id>prodhost</id>
-      <properties>
-        <site.url>http://prodhost.com/</site.url>
-      </properties>
-    </profile>
     <!-- grid -->
-    <profile>
+    <!--<profile>
       <id>nogrid</id>
       <properties>
         <grid.url></grid.url>
@@ -167,7 +167,7 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-    </profile>
+    </profile>-->
     <profile>
       <id>grid_local</id>
       <properties>
