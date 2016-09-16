@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import pages.examplePage;
 
-public class exampleTestTest extends BaseTest {
+public class exampleTest extends BaseTest {
 
   private examplePage homepage;
 
