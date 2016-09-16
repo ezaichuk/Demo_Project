@@ -21,5 +21,6 @@ public class exampleTest extends BaseTest {
   public void testHomePageHasAHeader() {
     driver.get(baseUrl);
     Assert.assertFalse("".equals(homepage.header.getText()));
+    Assert.assertTrue(false);
   }
 }
