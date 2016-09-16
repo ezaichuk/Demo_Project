@@ -1,4 +1,4 @@
-package DEMO_Project;
+package test;
 
 import org.openqa.selenium.support.PageFactory;
 
@@ -6,15 +6,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import DEMO_Project.pages.HomePage;
+import pages.examplePage;
 
-public class SampleTestNgTest extends TestNgTestBase {
+public class exampleTestTest extends BaseTest {
 
-  private HomePage homepage;
+  private examplePage homepage;
 
   @BeforeMethod
   public void initPageObjects() {
-    homepage = PageFactory.initElements(driver, HomePage.class);
+    homepage = PageFactory.initElements(driver, examplePage.class);
   }
 
   @Test

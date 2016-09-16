@@ -1,4 +1,4 @@
-package DEMO_Project;
+package test;
 
 import java.io.IOException;
 
@@ -12,12 +12,12 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.selenium.factory.WebDriverFactory;
 import ru.stqa.selenium.factory.WebDriverFactoryMode;
 
-import DEMO_Project.util.PropertyLoader;
+import util.PropertyLoader;
 
 /**
  * Base class for TestNG-based test classes
  */
-public class TestNgTestBase {
+public class BaseTest {
 
   protected static String gridHubUrl;
   protected static String baseUrl;

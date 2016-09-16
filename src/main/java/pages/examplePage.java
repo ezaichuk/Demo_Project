@@ -1,4 +1,4 @@
-package DEMO_Project.pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +9,13 @@ import org.openqa.selenium.support.How;
 /**
  * Sample page
  */
-public class HomePage extends Page {
+public class examplePage extends Page {
 
   @FindBy(how = How.TAG_NAME, using = "h1")
   @CacheLookup
   public WebElement header;
 
-  public HomePage(WebDriver webDriver) {
+  public examplePage(WebDriver webDriver) {
     super(webDriver);
   }
 }
