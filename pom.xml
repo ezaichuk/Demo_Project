@@ -80,6 +80,7 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
   <!-- profiles -->
@@ -153,10 +154,13 @@
       </properties>
     </profile>-->
     <profile>
-      <id>testhost</id>
+      <id>Our Wordpress site</id>
       <properties>
         <site.url>http://qa-u1604.vlab.lohika.com:8080/</site.url>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
     <!-- grid -->
     <!--<profile>
@@ -169,16 +173,53 @@
       </activation>
     </profile>-->
     <profile>
-      <id>grid_local</id>
+      <id>Grid on localhost. Connect to existing </id>
       <properties>
         <grid.url>http://localhost:4444/wd/hub/</grid.url>
       </properties>
     </profile>
+
     <profile>
-      <id>grid_remote</id>
+      <id>Grid</id>
       <properties>
-        <grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub</grid.url>
+        <grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub/</grid.url>
       </properties>
+
+    </profile>
+    <profile>
+      <id>Grid on localhost. First run</id>
+      <properties>
+        <grid.url>http://localhost:4444/wd/hub</grid.url>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.3.1</version>
+            <executions>
+              <execution>
+                <id>Run_Selenium_Hub</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>initialize</phase>
+                <configuration>
+                  <executable>cscript.exe</executable>
+                  <arguments>
+                    <argument>${project.basedir}/env/run.vbs </argument>
+                  </arguments>
+                  <workingDirectory>${project.basedir}/env/</workingDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
 
   </profiles>
