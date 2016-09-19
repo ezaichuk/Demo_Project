@@ -1,53 +1,36 @@
-# Demo_Project
+# Demo Test Project
 
-Easy steps to start :
+### Easy steps to start :
+* Clone repository :
+```sh
+ $ git clone https://github.com/ezaichuk/Demo_Project.git
+```
+* Create your own branch and switch to it:
+```sh
+$ git checkout -b <your_branch_name>
+```
+* Open project in Intellij Idea
+* Click View-&gt; Tool windows -&gt; Maven Projects
 
-1) Clone repository :
+> Select browser and environment in profiles. 
+> Then choose "test" and click Green Arrow under Maven Projects window.
+> It will run tests on Firefox browser using Selenium grid on your own host.
 
-  git clone https://github.com/ezaichuk/Demo_Project.git
+![MVN profiles](https://cldup.com/XdSHdd1IsT.png)
 
-2) Create your own branch :
 
-  git checkout -b &lt;your_branch_name&gt;
+* Which tests will be executed ?
 
-    example : git checkout -b asinuk
+> Open  /src/test/resources/testng.xml and edit classes section
 
-3) Open project in Intellij Idea
-
-4) Click View-&gt; Tool windows -&gt; Maven Projects
-
-  You'll see settings of run.
-
-  Example : 
-
-    Profiles -&gt; chrome, grid_local and testhost checked
-
-    DP1 -&gt; Lifecycle -&gt; choose "test" and click Green Arrow under Maven Projects window
-
-    
-
-    It will run tests on Chrome browser using Selenium grid on your own host.
-
-    
-
-5) Which tests will be executed ?
-
-Locate file /src/test/resources/testng.xml
-
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-
-&lt;!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" &gt;
-
-&lt;suite name="Tests" verbose="5"&gt;
-
-  &lt;test name="Test1"&gt;                 &lt;!-- THIS IS TEST NAME, CREATE YOUR OWN--&gt;
-
-    &lt;classes&gt;                          &lt;!-- HERE ARE LIST OF TEST CLASSES THAT WILL BE EXECUTED --&gt;
-
-      &lt;class name="test.exampleTest"/&gt;  
-
-    &lt;/classes&gt;
-
-  &lt;/test&gt;  
-
-&lt;/suite&gt;
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Tests" verbose="5">
+  <test name="Main Page tests">
+    <classes>
+      <class name="test.MainPage.LoginAsViewerAndLogout"/>
+    </classes>
+  </test>  
+</suite>
+```
