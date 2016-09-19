@@ -2,6 +2,7 @@ package util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -47,6 +48,18 @@ public class WebDriverHelper {
         WebElement element = null;
         element = wait.until(ExpectedConditions.visibilityOf(webElement));
         return (element != null);
+    }
+
+    public static boolean MouseOver (WebElement webElement, WebDriver driver){
+
+        if (WaitTillVisible(webElement, driver)) {
+            Actions action = new Actions(driver);
+            action.moveToElement(webElement).build().perform();
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
