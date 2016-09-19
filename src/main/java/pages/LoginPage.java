@@ -17,13 +17,22 @@ public class LoginPage extends Page {
     @FindBy(how = How.ID, using = "wp-submit")
     public WebElement buttonLogin;
 
+    @FindBy(how = How.CLASS_NAME, using = "message")
+    public WebElement loginMessage;
+
+    @FindBy(how = How.ID, using = "login_error")
+    public WebElement loginErrorMessage;
+
+    public void Open (String URL){
+        driver.navigate().to(URL + "/wp-login.php");
+    }
+
     public void LoginAs (String username, String password){
         WebDriverHelper.WaitTillVisible(this.username, driver);
         this.username.sendKeys(username);
         this.password.sendKeys(password);
         WebDriverHelper.WaitAndClick(buttonLogin, driver);
     }
-
 
     public LoginPage(WebDriver driver) {
         super(driver);
