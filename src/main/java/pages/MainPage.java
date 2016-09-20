@@ -24,6 +24,7 @@ public class MainPage extends Page {
     }
 
     public void ClickLoginLink (){
+
         this.loginLink.click();
     }
 

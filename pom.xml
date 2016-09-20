@@ -7,8 +7,8 @@
   <packaging>jar</packaging>
 
   <properties>
-    <aspectj.version>1.8.5</aspectj.version>
-    <allure.version>1.4.16</allure.version>
+    <aspectj.version>1.8.9</aspectj.version>
+    <allure.version>1.4.22</allure.version>
         </properties>
 
   <dependencies>
@@ -263,7 +263,7 @@
           <plugin>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-maven-plugin</artifactId>
-            <version>2.2</version>
+            <version>2.5</version>
           </plugin>
         </plugins>
       </reporting>

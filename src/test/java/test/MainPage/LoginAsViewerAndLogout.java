@@ -22,6 +22,7 @@ public class LoginAsViewerAndLogout extends BaseTest {
 
     @Test
     public void LoginAsViewerAndLogout(){
+
         OpenMainPage();
         ClickLoginUrl();
         ViewerLogin();

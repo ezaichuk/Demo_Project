@@ -18,11 +18,9 @@ public class LoginPage extends Page {
     public WebElement buttonLogin;
 
     public void LoginAs (String username, String password){
-//        WebDriverHelper.WaitTillVisible(this.username, driver);
         this.username.sendKeys(username);
         this.password.sendKeys(password);
         this.buttonLogin.click();
-//        WebDriverHelper.WaitAndClick(buttonLogin, driver);
     }
 
 

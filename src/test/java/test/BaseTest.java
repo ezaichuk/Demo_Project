@@ -51,6 +51,7 @@ public class BaseTest {
     }
 
     private void setupEventListener(){
+
         driver = new EventFiringWebDriver(webDriver);
         EventListener eventListener = new EventListener();
         driver.register(eventListener);

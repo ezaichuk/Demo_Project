@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class EventListener implements WebDriverEventListener {
 
-    WebDriverWait wait;
+    WebDriverWait  wait;
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
