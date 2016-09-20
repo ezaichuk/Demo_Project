@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5">
-  <test name="Main Page tests">
+  <!--<test name="Main Page tests">-->
+    <!--<classes>-->
+      <!--<class name="test.MainPage.LoginAsViewerAndLogout"/>-->
+    <!--</classes>-->
+  <!--</test>-->
+  <test name="Gennady`s Tests">
     <classes>
-      <class name="test.MainPage.LoginAsViewerAndLogout"/>
+      <class name="test.OurProductsTest"/>
     </classes>
-  </test>  
+  </test>
 </suite>
