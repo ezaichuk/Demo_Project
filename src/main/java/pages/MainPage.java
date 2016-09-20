@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import util.WebDriverHelper;
+//import util.WebDriverHelper;
 
 import java.io.IOException;
 
@@ -24,11 +24,11 @@ public class MainPage extends Page {
     }
 
     public void ClickLoginLink (){
-        WebDriverHelper.WaitAndClick(loginLink, driver);
+        this.loginLink.click();
     }
 
     public void ClickLogoutLink (){
-        WebDriverHelper.WaitAndClick(logoutLink, driver);
+        this.logoutLink.click();
     }
 
     public MainPage(WebDriver driver) throws IOException {

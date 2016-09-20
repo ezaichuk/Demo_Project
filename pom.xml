@@ -6,6 +6,11 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <properties>
+    <aspectj.version>1.8.5</aspectj.version>
+    <allure.version>1.4.16</allure.version>
+        </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.testng</groupId>
@@ -37,6 +42,19 @@
       <artifactId>phantomjsdriver</artifactId>
       <version>1.3.0</version>
     </dependency>
+    <dependency>
+      <groupId>ru.yandex.qatools.allure</groupId>
+      <artifactId>allure-testng-adaptor</artifactId>
+      <version>${allure.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
   </dependencies>
   <build>
     <resources>
@@ -218,9 +236,38 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.18.1</version>
+            <configuration>
+              <testFailureIgnore>true</testFailureIgnore>
+              <argLine>
+                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              </argLine>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
         </plugins>
       </build>
-    </profile>
 
+      <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+          <plugin>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-maven-plugin</artifactId>
+            <version>2.2</version>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
   </profiles>
+
 </project>

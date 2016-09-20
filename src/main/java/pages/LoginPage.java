@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import util.WebDriverHelper;
+//import util.WebDriverHelper;
 
 public class LoginPage extends Page {
 
@@ -18,10 +18,11 @@ public class LoginPage extends Page {
     public WebElement buttonLogin;
 
     public void LoginAs (String username, String password){
-        WebDriverHelper.WaitTillVisible(this.username, driver);
+//        WebDriverHelper.WaitTillVisible(this.username, driver);
         this.username.sendKeys(username);
         this.password.sendKeys(password);
-        WebDriverHelper.WaitAndClick(buttonLogin, driver);
+        this.buttonLogin.click();
+//        WebDriverHelper.WaitAndClick(buttonLogin, driver);
     }
 
 

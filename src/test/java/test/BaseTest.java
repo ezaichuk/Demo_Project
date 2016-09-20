@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -12,6 +13,7 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.selenium.factory.WebDriverFactory;
 import ru.stqa.selenium.factory.WebDriverFactoryMode;
 
+import util.EventListener;
 import util.PropertyLoader;
 
 /**
@@ -19,30 +21,38 @@ import util.PropertyLoader;
  */
 public class BaseTest {
 
-  protected static String gridHubUrl;
-  protected static String baseUrl;
-  protected static Capabilities capabilities;
+    protected static String gridHubUrl;
+    protected static String baseUrl;
+    protected static Capabilities capabilities;
 
-  protected WebDriver driver;
+    private WebDriver webDriver;
+    protected EventFiringWebDriver driver;
 
-  @BeforeSuite
-  public void initTestSuite() throws IOException {
-    baseUrl = PropertyLoader.loadProperty("site.url");
-    gridHubUrl = PropertyLoader.loadProperty("grid.url");
-    if ("".equals(gridHubUrl)) {
-      gridHubUrl = null;
+    @BeforeSuite
+    public void initTestSuite() throws IOException {
+        baseUrl = PropertyLoader.loadProperty("site.url");
+        gridHubUrl = PropertyLoader.loadProperty("grid.url");
+        if ("".equals(gridHubUrl)) {
+            gridHubUrl = null;
+        }
+        capabilities = PropertyLoader.loadCapabilities();
+        WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
     }
-    capabilities = PropertyLoader.loadCapabilities();
-    WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
-  }
 
-  @BeforeMethod
-  public void initWebDriver() {
-    driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
-  }
+    @BeforeMethod
+    public void initWebDriver() {
+        webDriver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
+        setupEventListener();
+    }
 
-  @AfterSuite(alwaysRun = true)
-  public void tearDown() {
-    WebDriverFactory.dismissAll();
-  }
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        WebDriverFactory.dismissAll();
+    }
+
+    private void setupEventListener(){
+        driver = new EventFiringWebDriver(webDriver);
+        EventListener eventListener = new EventListener();
+        driver.register(eventListener);
+    }
 }

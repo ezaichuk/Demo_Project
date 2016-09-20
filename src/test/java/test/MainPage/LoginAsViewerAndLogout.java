@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
+import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 
 public class LoginAsViewerAndLogout extends BaseTest {
@@ -20,27 +21,35 @@ public class LoginAsViewerAndLogout extends BaseTest {
     }
 
     @Test
+    public void LoginAsViewerAndLogout(){
+        OpenMainPage();
+        ClickLoginUrl();
+        ViewerLogin();
+        Logout();
+    }
+
+    @Step
     public void OpenMainPage() {
         mainPage.Open(baseUrl);
         Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"),"Verify Main page opened.");
     }
 
-    @Test(dependsOnMethods = {"OpenMainPage"})
+    @Step
     public void ClickLoginUrl() {
         mainPage.ClickLoginLink();
         Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");
     }
 
-    @Test(dependsOnMethods = {"ClickLoginUrl"})
+    @Step
     public void ViewerLogin() {
         loginPage.LoginAs("viewer_as","S2MV%R7*NPCwG7qhCDt8MPQq");
         Assert.assertTrue(mainPage.myAccountContent.getText().contains("Viewer AS"),"Verify login made as Viewer AS.");
     }
 
-    @Test(dependsOnMethods = {"ViewerLogin"})
+    @Step
     public void Logout() {
         mainPage.ClickLogoutLink();
-        Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");
+        Assert.assertTrue(loginPage.getTitle().contains("Log out"),"Verify Login page opened.");
     }
 
 }
