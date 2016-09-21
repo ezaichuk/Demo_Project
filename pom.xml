@@ -202,16 +202,15 @@
       <properties>
         <grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub/</grid.url>
       </properties>
-
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
     <profile>
       <id>Grid on localhost. First run</id>
       <properties>
         <grid.url>http://localhost:4444/wd/hub</grid.url>
       </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
 
       <build>
         <plugins>
