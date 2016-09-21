@@ -7,6 +7,10 @@
   <packaging>jar</packaging>
 
   <properties>
+      <!-- Project properties -->
+      <remote.grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub/</remote.grid.url>
+      <target.site>http://qa-u1604.vlab.lohika.com:8080/</target.site>
+      <!-- Reporting plugins versions-->
     <aspectj.version>1.8.9</aspectj.version>
     <allure.version>1.4.22</allure.version>
   </properties>
@@ -174,7 +178,7 @@
     <profile>
       <id>Our Wordpress site</id>
       <properties>
-        <site.url>http://qa-u1604.vlab.lohika.com:8080/</site.url>
+        <site.url>${target.site}</site.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -200,7 +204,7 @@
     <profile>
       <id>Grid</id>
       <properties>
-        <grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub/</grid.url>
+        <grid.url>${remote.grid.url}</grid.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -238,6 +242,25 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>firefox_ongrid</id>
+      <properties>
+          <capabilities>/firefox.capabilities</capabilities>
+          <grid.url>${remote.grid.url}</grid.url>
+          <site.url>${target.site}</site.url>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>chrome_ongrid</id>
+      <properties>
+        <capabilities>/chrome.capabilities</capabilities>
+        <grid.url>${remote.grid.url}</grid.url>
+          <site.url>${target.site}</site.url>
+      </properties>
+    </profile>
+
   </profiles>
 
 </project>
