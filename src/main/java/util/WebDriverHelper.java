@@ -1,5 +1,6 @@
 package util;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -37,6 +38,23 @@ public class WebDriverHelper {
         }
         else {
             return false;
+        }
+    }
+    public static void highLight(WebElement webElement, WebDriver driver) {
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
         }
     }
 
