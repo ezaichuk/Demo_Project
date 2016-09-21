@@ -1,1 +1,16 @@
-.idea
+# Created by .ignore support plugin (hsz.mobi)
+target/
+out/
+.idea/
+.idea/workspace.xml
+*.iml
+/**/*.iml
+*/*.iml
+/*.iml
+build/
+generated/
+.project
+.classpath
+.settings/
+*.sublime-*
+.tmp
