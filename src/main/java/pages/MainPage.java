@@ -42,11 +42,12 @@ public class MainPage extends Page {
     }
 
     public void ClickLoginLink (){
-        WebDriverHelper.WaitAndClick(loginLink, driver);
+
+        this.loginLink.click();
     }
 
     public void ClickLogoutLink (){
-        WebDriverHelper.WaitAndClick(logoutLink, driver);
+        this.logoutLink.click();
     }
 
     public void ClickHomeLink (){ WebDriverHelper.WaitAndClick(homeLink, driver); }
