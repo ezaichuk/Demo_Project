@@ -3,10 +3,8 @@
 <suite name="Tests" verbose="5" parallel="false">
   <test name="Main Page tests">
     <classes>
-        <class name="test.MainPage.LoginAsViewerAndLogout"/>
-        <class name="test.MainPage.LoginAsAdminAndLogout"/>
-        <class name="test.MainPage.CheckTopLinksMainPage"/>
-        <class name="test.MainPage.LoginPageNegative"/>
+        <class name="test.MainPage.LoginAs"/>
+
     </classes>
   </test>  
 </suite>

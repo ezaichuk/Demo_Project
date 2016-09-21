@@ -24,27 +24,28 @@ public abstract class Page {
   public String getTitle() {
     return driver.getTitle();
   }
-  private void highLight(WebElement element) {
+
+  public void highLight(WebElement webElement, WebDriver driver) {
     if (driver instanceof JavascriptExecutor) {
-      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
       try {
         Thread.sleep(300);
       } catch (Exception ex) { }
-      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
       try {
         Thread.sleep(300);
       } catch (Exception ex) { }
-      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
       try {
         Thread.sleep(300);
       } catch (Exception ex) { }
-      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+      ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
     }
   }
 
   public  WebElement findElement(By by) {
-    WebElement element = driver.findElement(by);
-    highLight(element);
-    return element;
+    WebElement webElement = driver.findElement(by);
+    highLight(webElement,driver);
+    return webElement;
   }
 }
