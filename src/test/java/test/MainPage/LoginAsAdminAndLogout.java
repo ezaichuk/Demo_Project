@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import pages.AdminPage;
 import pages.LoginPage;
 import pages.MainPage;
+import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 
 public class LoginAsAdminAndLogout extends BaseTest {
@@ -23,24 +24,32 @@ public class LoginAsAdminAndLogout extends BaseTest {
     }
 
     @Test
+    public void LoginAsAdminAndLogout (){
+        OpenMainPage();
+        ClickLoginUrl();
+        AdminLogin();
+        Logout();
+    }
+
+    @Step
     public void OpenMainPage() {
         mainPage.Open(baseUrl);
         Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"), "Verify Main page opened.");
     }
 
-    @Test(dependsOnMethods = {"OpenMainPage"})
+    @Step
     public void ClickLoginUrl() {
         mainPage.ClickLoginLink();
         Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");
     }
 
-    @Test(dependsOnMethods = {"ClickLoginUrl"})
+    @Step
     public void AdminLogin() {
         loginPage.LoginAs("QA","test");
         Assert.assertTrue(adminPage.getTitle().contains("Dashboard"),"Verify login made as Admin user.");
     }
 
-    @Test(dependsOnMethods = {"AdminLogin"})
+    @Step
     public void Logout() {
         adminPage.ClickLogoutLink();
         Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");

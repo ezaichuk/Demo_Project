@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import util.WebDriverHelper;
@@ -17,7 +16,7 @@ public class AdminPage extends Page {
 
     public void ClickLogoutLink (){
         WebDriverHelper.MouseOver(myAccountMenu, driver);
-        WebDriverHelper.WaitAndClick(logoutLink, driver);
+        logoutLink.click();
     }
 
     public AdminPage(WebDriver driver) {
