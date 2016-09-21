@@ -191,7 +191,7 @@
       </activation>
     </profile>-->
     <profile>
-      <id>Grid on localhost. Connect to existing </id>
+      <id>Grid on localhost. Connect to existing</id>
       <properties>
         <grid.url>http://localhost:4444/wd/hub/</grid.url>
       </properties>
