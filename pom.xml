@@ -9,7 +9,7 @@
   <properties>
     <aspectj.version>1.8.9</aspectj.version>
     <allure.version>1.4.22</allure.version>
-        </properties>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -53,9 +53,8 @@
         </exclusion>
       </exclusions>
     </dependency>
-
-
   </dependencies>
+
   <build>
     <resources>
       <resource>
@@ -88,7 +87,18 @@
           <systemPropertyVariables>
             <application.properties>/application.properties</application.properties>
           </systemPropertyVariables>
+            <testFailureIgnore>true</testFailureIgnore>
+            <argLine>
+                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+            </argLine>
         </configuration>
+          <dependencies>
+              <dependency>
+                  <groupId>org.aspectj</groupId>
+                  <artifactId>aspectjweaver</artifactId>
+                  <version>${aspectj.version}</version>
+              </dependency>
+          </dependencies>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -98,9 +108,20 @@
           <target>1.6</target>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
+
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>ru.yandex.qatools.allure</groupId>
+        <artifactId>allure-maven-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
   <!-- profiles -->
   <profiles>
     <!-- browsers -->
@@ -150,27 +171,6 @@
       </properties>
     </profile>
     <!-- environments -->
-    <!--<profile>
-      <id>localhost</id>
-      <properties>
-        <site.url>http://localhost/</site.url>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>devhost</id>
-      <properties>
-        <site.url>http://devhost/</site.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>prodhost</id>
-      <properties>
-        <site.url>http://prodhost.com/</site.url>
-      </properties>
-    </profile>-->
     <profile>
       <id>Our Wordpress site</id>
       <properties>
@@ -236,37 +236,8 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.18.1</version>
-            <configuration>
-              <testFailureIgnore>true</testFailureIgnore>
-              <argLine>
-                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-              </argLine>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
         </plugins>
       </build>
-
-      <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-          <plugin>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-maven-plugin</artifactId>
-            <version>2.5</version>
-          </plugin>
-        </plugins>
-      </reporting>
     </profile>
   </profiles>
 
