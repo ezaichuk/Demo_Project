@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.WebDriverHelper;
 
@@ -21,6 +22,7 @@ public class LoginPageNegative extends BaseTest{
     }
 
     @Test
+    @Step
     public void InvalidPassword (){
         //ERROR: The password you entered for the username QA is incorrect.
         //link : Lost your password?
@@ -36,12 +38,14 @@ public class LoginPageNegative extends BaseTest{
     }
 
     @Test(dependsOnMethods = {"InvalidPassword"})
+    @Step
     public void PasswordRecovery () {
         //placeholder
         Assert.assertTrue(false, "TODO: add password recovery test");
     }
 
     @Test
+    @Step
     public void InvalidUsername (){
         //ERROR: Invalid username.
         loginPage.LoginAs("1111", "1111");

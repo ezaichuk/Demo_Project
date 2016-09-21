@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MainPage;
+import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 
 public class CheckTopLinksMainPage extends BaseTest {
@@ -17,6 +18,7 @@ public class CheckTopLinksMainPage extends BaseTest {
     }
 
     @Test
+    @Step
     public void CheckTopLinks() {
         mainPage.Open(baseUrl);
 

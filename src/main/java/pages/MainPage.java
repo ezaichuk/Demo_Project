@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import util.WebDriverHelper;
 
 import java.io.IOException;
 
@@ -50,17 +49,17 @@ public class MainPage extends Page {
         this.logoutLink.click();
     }
 
-    public void ClickHomeLink (){ WebDriverHelper.WaitAndClick(homeLink, driver); }
+    public void ClickHomeLink (){ homeLink.click(); }
 
-    public void ClickCartLink (){ WebDriverHelper.WaitAndClick(cartLink, driver); }
+    public void ClickCartLink (){ cartLink.click(); }
 
-    public void ClickCheckoutLink (){ WebDriverHelper.WaitAndClick(checkoutLink, driver); }
+    public void ClickCheckoutLink (){ checkoutLink.click(); }
 
-    public void ClickMyAccountLink (){ WebDriverHelper.WaitAndClick(myaccountLink, driver); }
+    public void ClickMyAccountLink (){ myaccountLink.click(); }
 
-    public void ClickNewsLink (){ WebDriverHelper.WaitAndClick(newsLink, driver); }
+    public void ClickNewsLink (){ newsLink.click(); }
 
-    public void ClickOurProductsLink (){ WebDriverHelper.WaitAndClick(ourProductsLink, driver); }
+    public void ClickOurProductsLink (){ ourProductsLink.click(); }
 
 
     public MainPage(WebDriver driver) throws IOException {
