@@ -1,18 +1,16 @@
 package test;
 
-import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
-
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
 import ru.stqa.selenium.factory.WebDriverFactory;
 import ru.stqa.selenium.factory.WebDriverFactoryMode;
-
 import util.PropertyLoader;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for TestNG-based test classes
@@ -39,6 +37,11 @@ public class BaseTest {
   @BeforeMethod
   public void initWebDriver() {
     driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
+
+    //!!!!!!!!!!!!!!!!!! temp !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    //!!!!!!!!!!!!!!!!!! temp !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 
   @AfterSuite(alwaysRun = true)
