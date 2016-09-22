@@ -49,7 +49,7 @@ public class LoginPageNegative extends BaseTest{
 
         myAccountPage.inputUsernameEmail.sendKeys("1111");
         myAccountPage.buttonResetPassword.click();
-        Assert.assertTrue(myAccountPage.errorMessage.getText().contains("Invalid username or e-mail."), "Verify user can\'t get password for nonexistent account.");
+        Assert.assertTrue(myAccountPage.loginErrorMessage.getText().contains("Invalid username or e-mail."), "Verify user can\'t get password for nonexistent account.");
 
         myAccountPage.inputUsernameEmail.sendKeys("QA");
         myAccountPage.buttonResetPassword.click();
