@@ -1,9 +1,15 @@
 package util;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
 
 public class WebDriverHelper {
 
@@ -47,6 +53,14 @@ public class WebDriverHelper {
         WebElement element = null;
         element = wait.until(ExpectedConditions.visibilityOf(webElement));
         return (element != null);
+    }
+
+    public static void getScreenShot() throws Exception
+    {
+        WebDriver driver = new FirefoxDriver();
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        //The below method will save the screen shot in d drive with name "screenshot.png"
+        FileUtils.copyFile(scrFile, new File("%USERPROFILE%" + "\\IdeaProjects\\Demo_Project\\target\\surefire-reports\\screenshot.png"));
     }
 
 }
