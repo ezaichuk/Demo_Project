@@ -6,6 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -61,6 +62,19 @@ public class WebDriverHelper {
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         //The below method will save the screen shot in d drive with name "screenshot.png"
         FileUtils.copyFile(scrFile, new File("%USERPROFILE%" + "\\IdeaProjects\\Demo_Project\\target\\surefire-reports\\screenshot.png"));
+    }
+
+
+    public static boolean MouseOver (WebElement webElement, WebDriver driver){
+
+        if (WaitTillVisible(webElement, driver)) {
+            Actions action = new Actions(driver);
+            action.moveToElement(webElement).build().perform();
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
