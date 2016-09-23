@@ -1,6 +1,7 @@
 package util;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
@@ -68,7 +69,14 @@ public class EventListener implements WebDriverEventListener {
 
     @Override
     public void afterFindBy(By by, WebElement webElement, WebDriver webDriver) {
-
+        try {
+            if (PropertyLoader.loadProperty("highlight").contains("true")) {
+                WebElement element = webDriver.findElement(by);
+                highLight(element, webDriver);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -110,4 +118,23 @@ public class EventListener implements WebDriverEventListener {
     public void onException(Throwable throwable, WebDriver webDriver) {
 
     }
+
+    private void highLight(WebElement element, WebDriver driver) {
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+            try {
+                Thread.sleep(300);
+            } catch (Exception ex) { }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+        }
+    }
+
 }
