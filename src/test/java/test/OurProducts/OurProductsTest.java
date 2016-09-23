@@ -12,7 +12,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.OurProductFilter;
 
-import java.util.List;
 
 
 /**

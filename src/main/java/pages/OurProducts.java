@@ -5,15 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-import util.OurProductFilter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by rgolovatyi on 9/22/2016.
@@ -59,11 +54,7 @@ public class OurProducts extends Page {
     }
 
     public List<String> getProductNames() {
-        List<String> names = new ArrayList<String>();
-        for (WebElement element : listOfProducts) {
-            names.add(element.getText());
-        }
-        return names;
+        return listOfProducts.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
 
