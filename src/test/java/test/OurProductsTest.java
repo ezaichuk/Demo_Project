@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 
 package test;
 
@@ -56,7 +52,7 @@ public class OurProductsTest extends BaseTest {
 
     @Test( priority = 4 )
     public void specialLabelTest() throws Exception {
-        driver.findElement(By.xpath("//img[@alt='funnygifts-2']")).click();
+        //driver.findElement(By.xpath("//img[@alt='funnygifts-2']")).click();
         try {
             Assert.assertEquals("Sale!", driver.findElement(By.cssSelector("span.onsale")).getText());
             } catch (Error e) {};
@@ -76,8 +72,10 @@ public class OurProductsTest extends BaseTest {
 
     @Test( priority = 7 )
     public void addItemsToCartTest() throws Exception {
-        //driver.findElement(By.name("quantity")).clear();
-        driver.findElement(By.name("quantity")).sendKeys("2");
+        driver.findElement(By.xpath(".//input[@class='input-text qty text']")).clear();
+        //driver.findElement(By.name("quantity")).sendKeys("2");
+        //driver.findElement(By.id("inner-editor")).sendKeys("2");
+        driver.findElement(By.xpath(".//input[@class='input-text qty text']")).sendKeys("2");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
 

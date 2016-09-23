@@ -6,12 +6,12 @@
       <class name="test.OurProductsTest"/>
     </classes>
   </test>
-  <test name="Main Page tests">
-    <classes>
-        <class name="test.MainPage.LoginAsViewerAndLogout"/>
-        <class name="test.MainPage.LoginAsAdminAndLogout"/>
-        <class name="test.MainPage.CheckTopLinksMainPage"/>
-        <class name="test.MainPage.LoginPageNegative"/>
-    </classes>
-  </test>  
+  <!--<test name="Main Page tests">-->
+    <!--<classes>-->
+        <!--<class name="test.MainPage.LoginAsViewerAndLogout"/>-->
+        <!--<class name="test.MainPage.LoginAsAdminAndLogout"/>-->
+        <!--<class name="test.MainPage.CheckTopLinksMainPage"/>-->
+        <!--<class name="test.MainPage.LoginPageNegative"/>-->
+    <!--</classes>-->
+  <!--</test>  -->
 </suite>
