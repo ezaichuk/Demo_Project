@@ -76,7 +76,7 @@ public class SelectAdminPostsTab extends BaseTest {
 //        adminPagePostsTab.headerofTab.getText();
 
         assertThat(tab +" tab doesn't  exist ",true,  is(adminPageInnerTab.headerofTab.getText().contains(tab)));
-        adminPage.ClickAlternativeLogoutLink();
+        adminPage.ClickLogoutLink();
 
     }
 
