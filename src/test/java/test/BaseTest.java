@@ -55,5 +55,6 @@ public class BaseTest {
         driver = new EventFiringWebDriver(webDriver);
         EventListener eventListener = new EventListener();
         driver.register(eventListener);
+        driver.manage().window().maximize();
     }
 }

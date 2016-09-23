@@ -47,7 +47,7 @@ public class PostTabAddNewPostByButtonViaPlusMenu extends BaseTest {
     @Test(priority = 2)
 
     public void clickOnNewPostViaPlusMenu(String addNewPostHeaderText) {
-        WebDriverHelper.AlternativeMouseOver(adminPage.plusMenu, driver);
+        WebDriverHelper.MouseOver(adminPage.plusMenu, driver);
         adminPage.addNewPostViaPlusMenu.click();
     assertThat(" Add New Post Dialog didn't open",true,  is(adminPageInnerTab.headerofTab.getText().contains(addNewPostHeaderText)));
 
@@ -65,6 +65,6 @@ public class PostTabAddNewPostByButtonViaPlusMenu extends BaseTest {
         driver.switchTo().defaultContent();
         adminPageInnerTab.publishOrUpdateButton.click();
         assertThat("Add New Post tab didn't open ",true,  is(adminPageInnerTab.statusField.getText().contains("Published")));
-        adminPage.ClickAlternativeLogoutLink();
+        adminPage.ClickLogoutLink();
     }
 }

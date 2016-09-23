@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5" parallel="false">
-    <test name="Gennady`s Tests">
+    <test name="Our products Tests">
       <classes>
-        <class name="test.OurProductsTest"/>
+        <class name="test.OurProducts.OurProductsTest"/>
       </classes>
     </test>
-  </suite>
+</suite>
