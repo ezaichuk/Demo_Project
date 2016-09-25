@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5" parallel="false">
-  <test name="Main Page tests">
+    <parameter name="login" value="QA"></parameter>
+    <parameter name="password" value="test"></parameter>
+    <parameter name="tabName" value="Posts"></parameter>
+  <test name="AdminPagePostsTab tests">
     <classes>
-        <class name="test.MainPage.LoginAs"/>
-
+        <class name="test.MainPage.SelectAdminPostsTab"/>
     </classes>
   </test>  
 </suite>

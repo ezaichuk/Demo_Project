@@ -79,6 +79,7 @@ public class EventListener implements WebDriverEventListener {
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
         try {
             wait = new WebDriverWait(webDriver,Long.parseLong(PropertyLoader.loadProperty("timeToTimeout")));
+            log.info("WebDriver click on element - "+ elementDescription(webElement));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -119,5 +120,18 @@ public class EventListener implements WebDriverEventListener {
         }
     }
 
+    private String elementDescription(WebElement element) {
+        String description = "tag:" + element.getTagName();
+        if (element.getAttribute("id") != null) {
+            description += " id: " + element.getAttribute("id");
+        }
+        else if (element.getAttribute("name") != null) {
+            description += " name: " + element.getAttribute("name");
+        }
+
+        description += " ('" + element.getText() + "')";
+
+        return description;
+    }
 
 }
