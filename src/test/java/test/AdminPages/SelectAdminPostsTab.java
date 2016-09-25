@@ -1,4 +1,4 @@
-package test.MainPage;
+package test.AdminPages;
 
 
 import org.openqa.selenium.support.PageFactory;
@@ -6,11 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.AdminPage;
+import pages.AdminPageInnerTab;
 import pages.LoginPage;
 import test.BaseTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
 
 /**
  *
@@ -20,6 +22,7 @@ public class SelectAdminPostsTab extends BaseTest {
 
     private LoginPage loginPage;
     private AdminPage adminPage;
+    private AdminPageInnerTab adminPageInnerTab;
 
 //    @DataProvider
 //    public Object[][] loginPasswordData() {
@@ -39,6 +42,7 @@ public class SelectAdminPostsTab extends BaseTest {
     public void initPageObjects() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         adminPage = PageFactory.initElements(driver, AdminPage.class);
+        adminPageInnerTab = PageFactory.initElements(driver, AdminPageInnerTab.class);
     }
 
 //    @Test(dataProvider = "loginPasswordData")
@@ -69,8 +73,10 @@ public class SelectAdminPostsTab extends BaseTest {
 //    @Step
     public void clickOnPosts(String tab) {
         adminPage.clickOnNeededTab(tab);
-//        assertThat("Posts tab doesn't  exist ", true, equalTo(true));
-//        assertThat("Posts tab doesn't  exist ", true, equalTo(adminPage.clickOnNeededTab("Posts")));
+//        adminPagePostsTab.headerofTab.getText();
+
+        assertThat(tab +" tab doesn't  exist ",true,  is(adminPageInnerTab.headerofTab.getText().contains(tab)));
+        adminPage.ClickAlternativeLogoutLink();
 
     }
 

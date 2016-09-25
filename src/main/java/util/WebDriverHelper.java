@@ -40,6 +40,12 @@ public class WebDriverHelper {
             return false;
         }
     }
+
+    public static void AlternativeMouseOver (WebElement webElement, WebDriver driver){
+            Actions action = new Actions(driver);
+            action.moveToElement(webElement).build().perform();
+    }
+
     public static void highLight(WebElement webElement, WebDriver driver) {
         if (driver instanceof JavascriptExecutor) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);

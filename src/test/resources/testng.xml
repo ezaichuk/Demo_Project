@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Tests" verbose="5" parallel="false">
+<suite name="AdminPagePostsTab" verbose="5" parallel="false">
     <parameter name="login" value="QA"></parameter>
     <parameter name="password" value="test"></parameter>
     <parameter name="tabName" value="Posts"></parameter>
-  <test name="AdminPagePostsTab tests">
+    <parameter name="addNewPostHeaderText" value="Add New Post"></parameter>
+    <test name="AdminPagePostsTab PostsTabExistingTest">
+        <classes>
+           <class name="test.AdminPages.SelectAdminPostsTab"/>
+        </classes>
+    </test>
+  <test name="AdminPagePostsTab AddNewPostByButton">
     <classes>
-        <class name="test.MainPage.SelectAdminPostsTab"/>
+        <!-- <class name="test.AdminPages.SelectAdminPostsTab"/> -->
+        <class name="test.AdminPages.PostTabAddNewPostByButton"/>
     </classes>
-  </test>  
+  </test>
+    <test name="AdminPagePostsTab AddNewPostByUrl">
+        <classes>
+           <class name="test.AdminPages.PostTabAddNewPostByUrl"/>
+        </classes>
+    </test>
+    <test name="AdminPagePostsTab AddNewPostViaPostsMenu">
+            <classes>
+                <class name="test.AdminPages.PostTabAddNewPostByButtonViaPostsMenu"/>
+            </classes>
+    </test>
+    <test name="AdminPagePostsTab AddNewPostViaPlusMenu">
+            <classes>
+                <class name="test.AdminPages.PostTabAddNewPostByButtonViaPlusMenu"/>
+            </classes>
+    </test>
 </suite>
