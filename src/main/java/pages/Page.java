@@ -22,7 +22,4 @@ public abstract class Page {
     return driver.getTitle();
   }
 
-
-
-
 }

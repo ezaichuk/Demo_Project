@@ -46,7 +46,7 @@ public class PostTabAddNewPostByButtonViaPostsMenu extends BaseTest {
 
     public void clickOnNewPostViaPostsMenu( String tab,String addNewPostHeaderText) {
 
-        adminPage.actionOnMenu(tab,"mouseover");
+        adminPage.actionOnMenu(tab,false);
         adminPage.addNewPostViaPostsMenu.click();
 
         assertThat(" Add New Post Dialog didn't open",true,  is(adminPageInnerTab.headerofTab.getText().contains(addNewPostHeaderText)));

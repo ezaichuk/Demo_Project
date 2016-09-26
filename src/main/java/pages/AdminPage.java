@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
@@ -39,8 +38,7 @@ public class AdminPage extends Page {
     }
 
     public void ClickAlternativeLogoutLink (){
-        Actions action = new Actions(driver);
-        action.moveToElement(myAccountMenu).build().perform();
+        WebDriverHelper.AlternativeMouseOver(myAccountMenu,driver);
         alternativeLogoutLink.click();
     }
 
@@ -53,27 +51,21 @@ public class AdminPage extends Page {
 
     public void clickOnNeededTab (String nameOfTab)  {
         for(WebElement webElement: namesOfTab){
-//            System.out.println(webElement);
             if (webElement.getText().trim().contains(nameOfTab)) {
                 webElement.click();
                 break;
-//                return true;
             }
         }
-//        return false;
     }
 
-    public void actionOnMenu (String nameOfMenu, String clickOrMouseOver)  {
+    public void actionOnMenu (String nameOfMenu, Boolean clickOrMouseOver)  {
         for(WebElement webElement: namesOfTab){
             if (webElement.getText().trim().contains(nameOfMenu)) {
-                if (clickOrMouseOver=="click") webElement.click();
+                if (clickOrMouseOver) webElement.click();
                 else {
-                    Actions action = new Actions(driver);
-                    action.moveToElement(webElement).build().perform();
+                    WebDriverHelper.AlternativeMouseOver(webElement,driver);
                 }
-
                 break;
-
             }
         }
     }

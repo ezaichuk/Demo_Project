@@ -13,7 +13,6 @@ import java.io.IOException;
  * Created by rgolovatyi on 9/19/2016.
  */
 public class EventListener implements WebDriverEventListener {
-    private WebDriverHelper webDriverHelper;
     WebDriverWait  wait;
     private Log log = LogFactory.getLog(this.getClass());
     private By lastFindBy;
@@ -63,7 +62,7 @@ public class EventListener implements WebDriverEventListener {
         try {
             wait = new WebDriverWait(webDriver,Long.parseLong(PropertyLoader.loadProperty("timeToTimeout")));
             lastFindBy = by;
-            webDriverHelper.highLight(webDriver.findElement(by),webDriver);
+            WebDriverHelper.highLight(webDriver.findElement(by),webDriver);
         } catch (IOException e) {
             e.printStackTrace();
         }

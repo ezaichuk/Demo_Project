@@ -1,34 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="AdminPagePostsTab" verbose="5" parallel="false">
-    <parameter name="login" value="QA"></parameter>
-    <parameter name="password" value="test"></parameter>
-    <parameter name="tabName" value="Posts"></parameter>
-    <parameter name="addNewPostHeaderText" value="Add New Post"></parameter>
-    <test name="AdminPagePostsTab PostsTabExistingTest">
-        <classes>
-           <class name="test.AdminPages.SelectAdminPostsTab"/>
-        </classes>
-    </test>
-  <test name="AdminPagePostsTab AddNewPostByButton">
-    <classes>
-        <!-- <class name="test.AdminPages.SelectAdminPostsTab"/> -->
-        <class name="test.AdminPages.PostTabAddNewPostByButton"/>
-    </classes>
-  </test>
-    <test name="AdminPagePostsTab AddNewPostByUrl">
-        <classes>
-           <class name="test.AdminPages.PostTabAddNewPostByUrl"/>
-        </classes>
-    </test>
-    <test name="AdminPagePostsTab AddNewPostViaPostsMenu">
-            <classes>
-                <class name="test.AdminPages.PostTabAddNewPostByButtonViaPostsMenu"/>
-            </classes>
-    </test>
-    <test name="AdminPagePostsTab AddNewPostViaPlusMenu">
-            <classes>
-                <class name="test.AdminPages.PostTabAddNewPostByButtonViaPlusMenu"/>
-            </classes>
-    </test>
+<suite name="WorldPress Tests" verbose="5" parallel="false" thread-count="1" preserve-order="true">
+    <suite-files>
+    <suite-file path="./Bolgarov.xml" />
+    <suite-file path="./Sinyuk.xml" />
+    <suite-file path="./Zaichuk.xml" />
+    <suite-file path="./Melnyk.xml" />
+    <suite-file path="./Tsapock.xml" />
+    <suite-file path="./Golovatyi.xml" />
+    </suite-files>
 </suite>
