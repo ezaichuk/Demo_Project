@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="WorldPress Tests" verbose="5" parallel="false" thread-count="1" preserve-order="true">
     <suite-files>
-    <suite-file path="./Bolgarov.xml" />
-    <suite-file path="./Sinyuk.xml" />
-    <suite-file path="./Zaichuk.xml" />
-    <suite-file path="./Melnyk.xml" />
-    <suite-file path="./Tsapock.xml" />
-    <suite-file path="./Golovatyi.xml" />
+        <suite-file path="./Bolgarov.xml" />
+        <suite-file path="./Sinyuk.xml" />
+        <suite-file path="./Zaichuk.xml" />
+        <suite-file path="./Melnyk.xml" />
+        <suite-file path="./Tsapock.xml" />
+        <suite-file path="./Golovatyi.xml" />
     </suite-files>
 </suite>
