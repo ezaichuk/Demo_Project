@@ -14,4 +14,10 @@
             <class name="test.MainPage.LoginPageNegative"/>
         </classes>
     </test>
+    <test name="News Page tests">
+        <classes>
+            <class name="test.NewsPage.LogInToNews"/>
+            <class name="test.NewsPage.LogInToNewsNegative"/>
+        </classes>
+    </test>
 </suite>
