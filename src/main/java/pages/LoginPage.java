@@ -30,7 +30,9 @@ public class LoginPage extends Page {
     }
 
     public void LoginAs (String username, String password){
+        this.username.clear();
         this.username.sendKeys(username);
+        this.password.clear();
         this.password.sendKeys(password);
         this.buttonLogin.click();
     }
