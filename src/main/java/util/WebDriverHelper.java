@@ -41,21 +41,9 @@ public class WebDriverHelper {
     }
 
 
-    public static boolean MouseOver (WebElement webElement, WebDriver driver){
-
-        if (WaitTillVisible(webElement, driver)) {
-            Actions action = new Actions(driver);
-            action.moveToElement(webElement).build().perform();
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public static void AlternativeMouseOver (WebElement webElement, WebDriver driver){
-            Actions action = new Actions(driver);
-            action.moveToElement(webElement).build().perform();
+    public static void MouseOver (WebElement webElement, WebDriver driver){
+        Actions action = new Actions(driver);
+        action.moveToElement(webElement).build().perform();
     }
 
     public static void highLight(WebElement webElement, WebDriver driver) {

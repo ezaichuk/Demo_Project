@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5" parallel="false">
+    <!--<test name="Gennady`s Tests">
+      <classes>
+        <class name="test.OurProductsTest"/>
+      </classes>
+    </test>
     <test name="Main Page tests">
         <classes>
             <class name="test.MainPage.LoginAsViewerAndLogout"/>
@@ -8,10 +13,10 @@
             <class name="test.MainPage.CheckTopLinksMainPage"/>
             <class name="test.MainPage.LoginPageNegative"/>
         </classes>
-    </test>
-    <!--<test name="Admin Page tests">
+    </test>-->
+    <test name="Admin Page tests">
         <classes>
-            <class name="test.AdminPage.UserCreation"/>
+            <!--  <class name="test.AdminPages.UserManagement.UserCreation"/>-->
           </classes>
-      </test>-->
-</suite>
+      </test>
+  </suite>

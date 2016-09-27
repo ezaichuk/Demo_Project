@@ -64,6 +64,6 @@ public class PostTabAddNewPostByButtonViaPostsMenu extends BaseTest {
         driver.switchTo().defaultContent();
         adminPageInnerTab.publishOrUpdateButton.click();
         assertThat("Add New Post tab didn't open ",true,  is(adminPageInnerTab.statusField.getText().contains("Published")));
-        adminPage.ClickAlternativeLogoutLink();
+        adminPage.ClickLogoutLink();
     }
 }
