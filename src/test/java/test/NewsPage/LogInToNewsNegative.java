@@ -39,6 +39,8 @@ public class LogInToNewsNegative extends BaseTest {
         Assert.assertTrue(news.getTitle().contains("News"), "Verify News tab is opened.");
     }
 
+    // TODO: 9/26/2016 - refactor following methods to single one
+
     @Step
     public void LogInToNews1 (){
         news.AdminNews("testpas1111");
