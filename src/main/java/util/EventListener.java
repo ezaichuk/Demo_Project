@@ -58,14 +58,6 @@ public class EventListener implements WebDriverEventListener {
     @Override
     public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
         try {
-            if (PropertyLoader.loadProperty("highlight").contains("true")) {
-                WebElement element = webDriver.findElement(by);
-                highLight(element, webDriver);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             wait = new WebDriverWait(webDriver,Long.parseLong(PropertyLoader.loadProperty("timeToTimeout")));
             lastFindBy = by;
             WebDriverHelper.highLight(webDriver.findElement(by),webDriver);
