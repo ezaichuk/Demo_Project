@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Tests" verbose="5" parallel="false">
+    <test name="News Page tests">
+        <classes>
+            <class name="test.NewsPage.LogInToNews"/>
+            <class name="test.NewsPage.LogInToNewsNegative"/>
+          </classes>
+      </test>
+</suite>

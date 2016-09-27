@@ -22,14 +22,23 @@ public class LoginPage extends Page {
     @FindBy(how = How.ID, using = "login_error")
     public WebElement loginErrorMessage;
 
+    @FindBy(how = How.LINK_TEXT, using = "Lost your password?")
+    public WebElement lostPasswordLink;
+
     public void Open (String URL){
         driver.navigate().to(URL + "/wp-login.php");
     }
 
     public void LoginAs (String username, String password){
+        this.username.clear();
         this.username.sendKeys(username);
+        this.password.clear();
         this.password.sendKeys(password);
         this.buttonLogin.click();
+    }
+
+    public void LostPasswordClick (){
+        lostPasswordLink.click();
     }
 
     public LoginPage(WebDriver driver) {

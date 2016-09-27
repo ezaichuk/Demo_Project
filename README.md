@@ -27,8 +27,8 @@ $ git checkout -b <your_branch_name>
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5">
-  <test name="Main Page tests">
-    <classes>
+  <test name="Main Page tests">      <!-- THIS IS TEST NAME, CREATE YOUR OWN-->
+    <classes>                        <!-- HERE ARE LIST OF TEST CLASSES THAT WILL BE EXECUTED -->
       <class name="test.MainPage.LoginAsViewerAndLogout"/>
     </classes>
   </test>  
