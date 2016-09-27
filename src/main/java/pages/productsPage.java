@@ -45,7 +45,16 @@ public class productsPage extends Page {
 //
     @FindBy(how = How.ID, using = "comment")
     public WebElement itemComment;
+
+    @FindBy(how = How.ID, using = "author")
+    public WebElement reviewAuthor;
+
+    @FindBy(how = How.ID, using = "email")
+    public WebElement authorEmail;
 //
+    @FindBy(how = How.ID, using = "submit")
+    public WebElement addReview;
+
 //    public void Open (String URL){
 //        driver.navigate().to(URL);
 //    }
@@ -68,18 +77,20 @@ public class productsPage extends Page {
         itemImageCloseButton.click();
         //itemImage.sendKeys(Keys.ESCAPE);
     }
-//
-//    public void ClickCheckoutLink (){ checkoutLink.click(); }
-//
-//    public void ClickMyAccountLink (){ myaccountLink.click(); }
-//
-//    public void ClickNewsLink (){ newsLink.click(); }
-//
-//    public void ClickOurProductsLink (){ ourProductsLink.click(); }
 
 
     public productsPage(WebDriver driver) throws IOException {
         super(driver);
     }
 
+    public void addReviewPost(String reviewText, String reviewerName, String reviewerEmail) {
+        itemRating.click();
+        itemComment.clear();
+        itemComment.sendKeys(reviewText);
+        reviewAuthor.clear();
+        reviewAuthor.sendKeys(reviewerName);
+        authorEmail.clear();
+        authorEmail.sendKeys(reviewerEmail);
+        addReview.click();
+    }
 }
