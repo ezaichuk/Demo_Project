@@ -1,4 +1,4 @@
-package test.AdminPages;
+package test.AdminPages.Posts;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,6 @@ import pages.AdminPage;
 import pages.AdminPageInnerTab;
 import pages.LoginPage;
 import test.BaseTest;
-import util.WebDriverHelper;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -18,7 +17,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * Created by dbolgarov on 9/25/2016.
  */
-public class PostTabAddNewPostByButtonViaPlusMenu extends BaseTest {
+public class PostTabAddNewPostByButtonViaPostsMenu extends BaseTest {
     private LoginPage loginPage;
     private AdminPage adminPage;
     private AdminPageInnerTab adminPageInnerTab;
@@ -33,7 +32,6 @@ public class PostTabAddNewPostByButtonViaPlusMenu extends BaseTest {
 
     @Parameters({"login", "password"})
     @Test(priority = 1,alwaysRun =true)
-//    @Step
     public void loginToAdminPart(String login, String pass) {
 
         driver.get(baseUrl + "wp-login.php");
@@ -42,26 +40,27 @@ public class PostTabAddNewPostByButtonViaPlusMenu extends BaseTest {
     }
 
 
-
-@Parameters({"addNewPostHeaderText"})
+    @Parameters({"tabName","addNewPostHeaderText"})
+    //@Test(dependsOnMethods = {"loginToAdminPart"})
     @Test(priority = 2)
 
-    public void clickOnNewPostViaPlusMenu(String addNewPostHeaderText) {
-        WebDriverHelper.MouseOver(adminPage.plusMenu, driver);
-        adminPage.addNewPostViaPlusMenu.click();
-    assertThat(" Add New Post Dialog didn't open",true,  is(adminPageInnerTab.headerofTab.getText().contains(addNewPostHeaderText)));
+    public void clickOnNewPostViaPostsMenu( String tab,String addNewPostHeaderText) {
+
+        adminPage.actionOnMenu(tab,false);
+        adminPage.addNewPostViaPostsMenu.click();
+
+        assertThat(" Add New Post Dialog didn't open",true,  is(adminPageInnerTab.headerofTab.getText().contains(addNewPostHeaderText)));
 
     }
 
 
-    @Test(priority = 4)
+    @Test(priority = 7)
     public void AddNewPost() {
 
-        adminPageInnerTab.addNewItemName.sendKeys("Test title for  new post MouseOver Plus Menu");
-
+        adminPageInnerTab.addNewItemName.sendKeys("Test title for  new post MouseOver Posts Menu");
         driver.switchTo().frame(adminPageInnerTab.innerFrame);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].innerHTML = '"+ "Some text in the post MouseOver Plus Menu" +"'", adminPageInnerTab.addNewItemBodyText);
+        executor.executeScript("arguments[0].innerHTML = '"+ "Some text in the post MouseOver Posts Menu" +"'", adminPageInnerTab.addNewItemBodyText);
         driver.switchTo().defaultContent();
         adminPageInnerTab.publishOrUpdateButton.click();
         assertThat("Add New Post tab didn't open ",true,  is(adminPageInnerTab.statusField.getText().contains("Published")));

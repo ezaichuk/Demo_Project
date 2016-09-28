@@ -2,7 +2,10 @@ package util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -60,7 +63,8 @@ public class EventListener implements WebDriverEventListener {
         try {
             wait = new WebDriverWait(webDriver,Long.parseLong(PropertyLoader.loadProperty("timeToTimeout")));
             lastFindBy = by;
-            WebDriverHelper.highLight(webDriver.findElement(by),webDriver);
+            if (PropertyLoader.loadProperty("highlight").contains("true"))
+                WebDriverHelper.highLight(webDriver.findElement(by),webDriver);
         } catch (IOException e) {
             e.printStackTrace();
         }
