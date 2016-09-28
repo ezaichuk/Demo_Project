@@ -1,6 +1,8 @@
 package test.AdminPages.UserManagement;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +14,7 @@ import pages.AdminUserManagement;
 import pages.LoginPage;
 import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
+import util.UserRoles;
 
 import java.io.IOException;
 
@@ -33,17 +36,37 @@ public class UserCreation extends BaseTest{
     @Test
     public void AddUserPageAccess (){
         AdminLogin();
-        //NOT WORKING
-        /*AddUserLeftPanel();
-        adminPage.actionOnMenu("Dashboard", true);*/
+        AddUserLeftPanel();
+        adminPage.actionOnMenu("Dashboard", true);
         AddUserTopMenu();
-        /*adminPage.actionOnMenu("Dashboard", true);
-        AddUserUsersPage();*/
+        adminPage.actionOnMenu("Dashboard", true);
+        AddUserUsersPage();
     }
 
-    @Test(dependsOnMethods = {"AddUserPageAccess"})
+    @Test(dependsOnMethods = {"AddUserPageAccess"}, enabled = true)
     public void TestUserCreation (){
-        adminUserCreation.CreateUser("test", "test@qa.com", "shitpassword");
+        //Creates user for each role
+        WebElement username;
+        for (UserRoles role : UserRoles.values()){
+            adminUserCreation.CreateUser("test_" + role.value(),
+                    "test_" + role.value() + "@test.com",
+                    "test",
+                    role.value(),
+                    "www." + role.value() + ".com",
+                    role.value(),
+                    true,
+                    role.value());
+            //do fast verify
+            adminUserManagement.DoSearch("test_" + role.value());
+            username = adminUserManagement.userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/strong/a"));
+            Assert.assertTrue(username.getText().contains("test_" + role.value()), "Verify user " + "test_" + role.value() + " created");
+
+            //create next user
+            adminUserManagement.addNewElement.click();
+
+            //TODO : thoroughly check of created user thru Edit User page
+            //adminUserManagement.userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/strong/a")).click();
+        }
     }
 
     @Step

@@ -3,8 +3,8 @@
 <suite name="Tests" verbose="5" parallel="false">
     <test name="News Page tests">
         <classes>
-            <class name="test.NewsPage.LogInToNews"/>
             <class name="test.NewsPage.LogInToNewsNegative"/>
+            <class name="test.NewsPage.LogInToNews"/>
           </classes>
       </test>
 </suite>

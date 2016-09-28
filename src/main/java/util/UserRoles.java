@@ -3,7 +3,7 @@ package util;
 public enum UserRoles {
 
     SUBSCRIBER("subscriber","Subscriber"),
-    SHOP_MANAGER("show_manager", "Менеджер магазина"),
+    SHOP_MANAGER("shop_manager", "Менеджер магазина"),
     CUSTOMER("customer","Клиент"),
     CONTRIBUTOR("contributor","Contributor"),
     AUTHOR("author","Author"),
