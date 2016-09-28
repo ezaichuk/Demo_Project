@@ -1,6 +1,5 @@
 package test.AdminPages.UserManagement;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,8 +14,6 @@ import pages.LoginPage;
 import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.UserRoles;
-
-import java.io.IOException;
 
 public class UserCreation extends BaseTest{
 
