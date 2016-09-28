@@ -67,10 +67,11 @@ public class AdminUserCreation extends Page {
 
     public void CreateUser (String username, String email, String password){
         showPasswordButton.click();
-        this.password.clear();
-        this.password.sendKeys("");
-        this.password.sendKeys(password);
-        System.out.println("pwd is : " + this.password.getText());
+        //Entering password two times, because of Firefox issue, that only first letter entered
+        for (int i=0; i<2; i++){
+            this.password.clear();
+            this.password.sendKeys(password);
+        }
         useWeakPassword.click();
         CreateUser (username, email);
     }
@@ -87,7 +88,7 @@ public class AdminUserCreation extends Page {
         this.lastname.sendKeys(lastname);
         this.website.sendKeys(website);
         SelectRole(role);
-        if (!sendNotification.isSelected() != enableNotification ){
+        if (sendNotification.isSelected() != enableNotification ){
             sendNotification.click();
         }
         CreateUser(username, email, password);
