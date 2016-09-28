@@ -10,6 +10,7 @@
       <!-- Project properties -->
       <remote.grid.url>http://qa-u1604.vlab.lohika.com:4444/wd/hub/</remote.grid.url>
       <target.site>http://qa-u1604.vlab.lohika.com:8080/</target.site>
+      <highlight>true</highlight>
       <!-- Reporting plugins versions-->
     <aspectj.version>1.8.9</aspectj.version>
     <allure.version>1.4.22</allure.version>
@@ -255,6 +256,7 @@
           <capabilities>/firefox.capabilities</capabilities>
           <grid.url>${remote.grid.url}</grid.url>
           <site.url>${target.site}</site.url>
+        <highlight>false</highlight>
       </properties>
     </profile>
 
@@ -264,6 +266,7 @@
         <capabilities>/chrome.capabilities</capabilities>
         <grid.url>${remote.grid.url}</grid.url>
           <site.url>${target.site}</site.url>
+        <highlight>false</highlight>
       </properties>
     </profile>
 

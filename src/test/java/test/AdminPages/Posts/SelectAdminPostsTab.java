@@ -1,4 +1,4 @@
-package test.AdminPages;
+package test.AdminPages.Posts;
 
 
 import org.openqa.selenium.support.PageFactory;
