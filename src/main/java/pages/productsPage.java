@@ -28,7 +28,7 @@ public class productsPage extends Page {
     @FindBy(how = How.XPATH, using = "//img[@alt='funnygifts-2']")
     public WebElement itemImage;
 
-    @FindBy(how = How.LINK_TEXT, using = "Close")
+    @FindBy(how = How.CLASS_NAME, using = "pp_close")
     public WebElement itemImageCloseButton;
 
     @FindBy(how = How.NAME, using = "quantity")

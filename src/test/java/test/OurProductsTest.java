@@ -95,16 +95,7 @@ public class OurProductsTest extends BaseTest {
     public void writeReviewTest() throws Exception {
         this.driver.get(baseUrl + "/product/toaster/#tab-reviews");
         productsPage.addReviewPost("Some Text 3", "Johnny D", "john.doe.2@yopmail.com");
-//        productsPage.itemRating.click();
-//        productsPage.itemComment.clear();
-//        productsPage.itemComment.sendKeys("Some Text 2");
-//        productsPage.reviewAuthor.clear();
-//        productsPage.reviewAuthor.sendKeys("Johnny D");
-//        productsPage.authorEmail.clear();
-//        productsPage.authorEmail.sendKeys("john.doe.2@yopmail.com");
-//        productsPage.addReview.click();
-        //driver.navigate(toString(baseUrl + "/product/toaster#tab-reviews"));
-        //driver.findElement(By.id("reviews")).click();
+
     }
 }
 
