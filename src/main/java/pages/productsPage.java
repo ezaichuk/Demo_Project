@@ -8,7 +8,7 @@ import org.openqa.selenium.support.How;
 
 import java.io.IOException;
 
-public class productsPage extends Page {
+public class ProductsPage extends Page {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"site-navigation\"]/div[1]/ul/li[6]/a")
     public WebElement OurProductsLink;
@@ -59,17 +59,17 @@ public class productsPage extends Page {
 //        driver.navigate().to(URL);
 //    }
 
-    public void clickProductsLink (){
+    public void ClickProductsLink(){
 
-        this.OurProductsLink.click();
+        OurProductsLink.click();
     }
 
-    public void clickGroupLink (){
-        this.GroupLink.click();
+    public void ClickGroupLink(){
+        GroupLink.click();
     }
 
     public void ClickItemLink (){
-        this.itemLink.click();
+        itemLink.click();
     }
 //
     public void CheckItemImage (){
@@ -79,11 +79,11 @@ public class productsPage extends Page {
     }
 
 
-    public productsPage(WebDriver driver) throws IOException {
+    public ProductsPage(WebDriver driver) throws IOException {
         super(driver);
     }
 
-    public void addReviewPost(String reviewText, String reviewerName, String reviewerEmail) {
+    public void AddReviewPost(String reviewText, String reviewerName, String reviewerEmail) {
         itemRating.click();
         itemComment.clear();
         itemComment.sendKeys(reviewText);
