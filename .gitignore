@@ -14,3 +14,4 @@ generated/
 .settings/
 *.sublime-*
 .tmp
+src/test/resources/testng.xml
