@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,10 +10,10 @@ import java.io.IOException;
 public class ProductsPage extends Page {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"site-navigation\"]/div[1]/ul/li[6]/a")
-    public WebElement OurProductsLink;
+    public WebElement ourProductsLink;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"main\"]/ul/li[1]/a/img")
-    public WebElement GroupLink;
+    public WebElement groupLink;
 
     @FindBy(how = How.CSS, using = "span.onsale")
     public WebElement specialLabel;
@@ -61,11 +60,11 @@ public class ProductsPage extends Page {
 
     public void ClickProductsLink(){
 
-        OurProductsLink.click();
+        ourProductsLink.click();
     }
 
     public void ClickGroupLink(){
-        GroupLink.click();
+        groupLink.click();
     }
 
     public void ClickItemLink (){
