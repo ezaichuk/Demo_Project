@@ -8,10 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import pages.AdminPage;
-import pages.AdminUserCreation;
-import pages.AdminUserManagement;
-import pages.LoginPage;
+import pages.*;
 import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.UserRoles;
@@ -24,6 +21,7 @@ public class UserCreation extends BaseTest{
     private AdminPage adminPage;
     private AdminUserCreation adminUserCreation;
     private AdminUserManagement adminUserManagement;
+    private AdminUserDeletion adminUserDeletion;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -31,6 +29,7 @@ public class UserCreation extends BaseTest{
         adminPage = PageFactory.initElements(driver, AdminPage.class);
         adminUserCreation = PageFactory.initElements(driver, AdminUserCreation.class);
         adminUserManagement = PageFactory.initElements(driver, AdminUserManagement.class);
+        adminUserDeletion = PageFactory.initElements(driver, AdminUserDeletion.class);
     }
 
     @Test
@@ -43,7 +42,7 @@ public class UserCreation extends BaseTest{
         AddUserUsersPage();
     }
 
-    @Test(dependsOnMethods = {"AddUserPageAccess"}, enabled = true)
+    @Test(dependsOnMethods = {"AddUserPageAccess"})
     public void TestUserCreation (){
         //Creates user for each role
         WebElement username;
@@ -67,6 +66,19 @@ public class UserCreation extends BaseTest{
             //TODO : thoroughly check of created user thru Edit User page
             //adminUserManagement.userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/strong/a")).click();
         }
+    }
+
+    @Test//(dependsOnMethods = {"TestUserCreation"})
+    public void DeleteSingleUser (){
+        AdminLogin();
+        String usertodel = "test_subscriber";
+        adminPage.actionOnMenu("Users", true);
+        Assert.assertTrue(adminUserManagement.DeleteUser(usertodel), "Specify user for deletion.");
+        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(usertodel), "Verify right user specified for deletion.");
+        adminUserDeletion.SubmitDeletion();
+        Assert.assertTrue(adminUserManagement.message.getText().contains("User deleted."), "Verify \"User deleted.\" message appeared");
+        adminUserManagement.DoSearch(usertodel);
+        Assert.assertTrue(adminUserManagement.searchMessage.getText().contains("No users found."), "Verify deleted user not found.");
     }
 
     @Step
