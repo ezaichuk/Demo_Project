@@ -1,13 +1,8 @@
 package util;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -42,8 +37,12 @@ public class WebDriverHelper {
 
 
     public static void MouseOver (WebElement webElement, WebDriver driver){
-        Actions action = new Actions(driver);
-        action.moveToElement(webElement).build().perform();
+        //        Actions action = new Actions(driver);                     // old code, works only with FF
+        //        action.moveToElement(webElement).build().perform();       // old code, works only with FF
+        String javaScript = "var ourClass = arguments[0].getAttribute('class');"+
+                "ourClass = ourClass + ' hover';"+
+                "arguments[0].setAttribute('class', ourClass);";
+        ((JavascriptExecutor)driver).executeScript(javaScript, webElement);
     }
 
     public static void highLight(WebElement webElement, WebDriver driver) {
@@ -56,11 +55,11 @@ public class WebDriverHelper {
             try {
                 Thread.sleep(300);
             } catch (Exception ex) { }
-            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
-            try {
-                Thread.sleep(300);
-            } catch (Exception ex) { }
-            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", webElement);
+//            try {
+//                Thread.sleep(300);
+//            } catch (Exception ex) { }
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
         }
     }
 
