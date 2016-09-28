@@ -2,7 +2,6 @@ package test.NewsPage;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,11 +20,6 @@ public class LogInToNews extends BaseTest {
     public void initPageObjects() {
         news = PageFactory.initElements(driver, NewsPage.class);
     }
-
-    @AfterClass
-            driver.manage().deleteCookie(arg0);
-        driver.manage().deleteCookieNamed(arg0);
-driver.manage().deleteAllCookies();
 
     @Test
         public void LogInToNews (){
