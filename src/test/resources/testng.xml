@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
 <suite name="WorldPress Tests" verbose="5" parallel="false" thread-count="1" preserve-order="true">
     <suite-files>
         <!--<suite-file path="Test XMLs/Bolgarov.xml" />-->

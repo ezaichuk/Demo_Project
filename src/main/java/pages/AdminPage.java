@@ -39,6 +39,7 @@ public class AdminPage extends Page {
         super(driver);
     }
 
+
     public void ClickLogoutLink(){
         WebDriverHelper.MouseOver(myAccountMenu,driver);
         logoutLink.click();

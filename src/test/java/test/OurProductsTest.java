@@ -17,7 +17,7 @@ public class OurProductsTest extends BaseTest {
 
     @BeforeMethod
     public void initPageObjects() {
-        homepage = (examplePage)PageFactory.initElements(driver, examplePage.class);
+        homepage = PageFactory.initElements(driver, examplePage.class);
         productsPage = PageFactory.initElements(driver, ProductsPage.class);
     }
 
