@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 import util.WebDriverHelper;
 import java.util.List;
 
@@ -23,8 +24,14 @@ public class AdminUserManagement extends Page {
     @FindBys({@FindBy (xpath = ".//tbody[@id='the-list']/tr")})
     public List<WebElement> userList;
 
-    @FindBy(how = How.ID, using = "cd-select-all-1")
+    @FindBy(how = How.ID, using = "cb-select-all-1")
     public WebElement selectAllCheckbox;
+
+    @FindBy(how = How.ID, using = "bulk-action-selector-top")
+    public WebElement bulkActions;
+
+    @FindBy(how = How.ID, using = "doaction")
+    public WebElement submitActionButton;
 
     @FindBy(how = How.XPATH, using = ".//*[@id='message']/p")
     public WebElement message;
@@ -49,11 +56,27 @@ public class AdminUserManagement extends Page {
         if (userList.size() != 1) {
             return false;
         }else{
-            userlink = userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']"));
+            selectAllCheckbox.click();
+            new Select(bulkActions).selectByValue("delete");
+            submitActionButton.click();
+            /*userlink = userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']"));
             WebDriverHelper.MouseOver(userlink, driver);
             delete = userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/div/span[2]/a"));
-            delete.click();
+            delete.click();*/
             return true;
         }
     }
+
+    public boolean DeleteUsers(String filter) {
+        DoSearch(filter);
+        if (userList.size() == 0) {
+            return false;
+        }else{
+            selectAllCheckbox.click();
+            new Select(bulkActions).selectByValue("delete");
+            submitActionButton.click();
+            return true;
+        }
+    }
+
 }

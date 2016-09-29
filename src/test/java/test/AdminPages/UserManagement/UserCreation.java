@@ -64,16 +64,29 @@ public class UserCreation extends BaseTest{
         }
     }
 
-    @Test//(dependsOnMethods = {"TestUserCreation"})
+    @Test(dependsOnMethods = {"TestUserCreation"}, priority = 0)
     public void DeleteSingleUser (){
         AdminLogin();
-        String usertodel = "test_subscriber";
+        String usertodel = "test_author";
         adminPage.actionOnMenu("Users", true);
         Assert.assertTrue(adminUserManagement.DeleteUser(usertodel), "Specify user for deletion.");
         Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(usertodel), "Verify right user specified for deletion.");
         adminUserDeletion.SubmitDeletion();
         Assert.assertTrue(adminUserManagement.message.getText().contains("User deleted."), "Verify \"User deleted.\" message appeared");
         adminUserManagement.DoSearch(usertodel);
+        Assert.assertTrue(adminUserManagement.searchMessage.getText().contains("No users found."), "Verify deleted user not found.");
+    }
+
+    @Test(dependsOnMethods = {"TestUserCreation"}, priority = 1)
+    public void DeleteSeveralUsers (){
+        AdminLogin();
+        String userstodel = "test_";
+        adminPage.actionOnMenu("Users", true);
+        Assert.assertTrue(adminUserManagement.DeleteUsers(userstodel), "Specify users for deletion.");
+        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(userstodel), "Verify right users specified for deletion.");
+        adminUserDeletion.SubmitDeletion();
+        Assert.assertTrue(adminUserManagement.message.getText().contains("users deleted."), "Verify \"User deleted.\" message appeared");
+        adminUserManagement.DoSearch(userstodel);
         Assert.assertTrue(adminUserManagement.searchMessage.getText().contains("No users found."), "Verify deleted user not found.");
     }
 
