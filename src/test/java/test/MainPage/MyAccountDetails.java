@@ -67,7 +67,6 @@ public class MyAccountDetails extends BaseTest {
     accountDetailsPage.RestorePassword();
     myAccPage.Open(baseUrl);
     myAccPage.SignOut();
-
   }
 
   @Test
@@ -102,6 +101,7 @@ public class MyAccountDetails extends BaseTest {
 
     accountAddressesPage.RestorePreviousValues();
 
+    myAccPage.SignOut();
 
   }
 
