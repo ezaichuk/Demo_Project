@@ -44,7 +44,22 @@ public class MyAccountPage extends Page {
     @FindBy(how = How.XPATH, using = ".//ul[@class='woocommerce-error']")
     public WebElement loginErrorMessage;
 
+    @FindBy(how = How.LINK_TEXT, using = "Dashboard")
+    public WebElement dashboardLink;
 
+    @FindBy(how = How.LINK_TEXT, using = "Orders")
+    public WebElement ordersLink;
+
+    @FindBy(how = How.LINK_TEXT, using = "Downloads")
+    public WebElement downloadsLink;
+
+    @FindBy(how = How.LINK_TEXT, using = "Addresses")
+    public WebElement addressesLink;
+
+
+
+    @FindBy(how = How.LINK_TEXT, using = "Logout")
+    public WebElement logoutLink;
 
     public MyAccountPage(WebDriver driver) {
         super(driver);
