@@ -1,7 +1,7 @@
 package test.OurProducts;
 
 
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -33,6 +33,12 @@ public class OurProductsTest extends BaseTest {
         openOurProductPage();
         selectAndCheckFilters();
         checkProductsNames();
+        addProductToCart();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -53,6 +59,13 @@ public class OurProductsTest extends BaseTest {
     @Step
     public void checkProductsNames() {
         Assert.assertTrue(ourProducts.checkProductsNames(ourProducts.getProductNames()));
+    }
+
+    @Step
+    public void addProductToCart(){
+        ourProducts.selectProductOrCatalog("Funny Gifts");
+       // Assert.assertTrue(ourProducts.catalogName.getText().equals("Funny Gifts"));
+        ourProducts.addProductToCart("Toaster");
     }
 
 }
