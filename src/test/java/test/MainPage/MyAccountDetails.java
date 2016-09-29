@@ -34,6 +34,32 @@ public class MyAccountDetails extends BaseTest {
   }
 
   @Test
+  public void CheckingAccountLinks()
+  {
+    myAccPage.Open(baseUrl);
+    myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf");
+
+    myAccPage.ordersLink.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("Orders"));
+
+    myAccPage.downloadsLink.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("Downloads"));
+
+    myAccPage.dashboardLink.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("My account"));
+
+    myAccPage.addressesLink.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("Addresses"));
+
+    myAccPage.linkAccountDetails.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("Account Details"));
+
+    myAccPage.logoutLink.click();
+    assertTrue(driver.findElement(By.className("entry-title")).getText().contains("My account"));
+
+  }
+
+  @Test
   public void ChangingAccountDetails() {
     //Changing General Account Details
     myAccPage.Open(baseUrl);
