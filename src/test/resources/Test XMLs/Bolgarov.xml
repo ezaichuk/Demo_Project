@@ -7,11 +7,11 @@
     <parameter name="addNewPostHeaderText" value="Add New Post"></parameter>
     <test name="AdminPagePostsTab ">
         <classes>
-           <class name="test.AdminPages.SelectAdminPostsTab"/> <!--  -->
-           <class name="test.AdminPages.PostTabAddNewPostByButton"/>
-           <class name="test.AdminPages.PostTabAddNewPostByUrl"/>
-           <class name="test.AdminPages.PostTabAddNewPostByButtonViaPostsMenu"/>
-           <class name="test.AdminPages.PostTabAddNewPostByButtonViaPlusMenu"/>
+           <class name="test.AdminPages.Posts.SelectAdminPostsTab"/> <!--  -->
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButton"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByUrl"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPostsMenu"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPlusMenu"/>
         </classes>
     </test>
 </suite>
