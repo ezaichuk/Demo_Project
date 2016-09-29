@@ -9,66 +9,70 @@ import org.openqa.selenium.support.How;
 public class MyAccountDetailsPage extends Page {
 
     @FindBy(how = How.NAME, using = "account_first_name")
-    public WebElement accDetailsFirstName;
+    public WebElement FirstName;
 
     @FindBy(how = How.NAME, using = "account_last_name")
-    public WebElement accDetailsLastName;
+    public WebElement LastName;
 
     @FindBy(how = How.NAME, using = "account_email")
-    public WebElement accDetailsEmail;
+    public WebElement Email;
 
     @FindBy(how = How.NAME, using = "password_current")
-    public WebElement accDetailsCurrPass;
+    public WebElement CurrPass;
 
     @FindBy(how = How.NAME, using = "password_1")
-    public WebElement accDetailsNewPass;
+    public WebElement NewPass;
 
     @FindBy(how = How.NAME, using = "password_2")
-    public WebElement accDetailsConfirmNewPass;
+    public WebElement ConfirmNewPass;
 
     @FindBy(how = How.NAME, using = "save_account_details")
-    public WebElement accDetailsSaveButton;
+    public WebElement SaveButton;
 
 
     public void SaveGeneralData(){
-        String fn = accDetailsFirstName.getAttribute("value");
-        String ln = accDetailsLastName.getAttribute("value");
-        String mail = accDetailsEmail.getAttribute("value");
+        String fn = FirstName.getAttribute("value");
+        String ln = LastName.getAttribute("value");
+        String mail = Email.getAttribute("value");
 
-        accDetailsFirstName.clear();
-        accDetailsLastName.clear();
-        accDetailsEmail.clear();
-        accDetailsFirstName.sendKeys(fn + "1");
-        accDetailsLastName.sendKeys(ln + "1");
-        accDetailsEmail.sendKeys(mail + "1");
-        accDetailsSaveButton.click();
+        FirstName.clear();
+        LastName.clear();
+        Email.clear();
+        FirstName.sendKeys(fn + "1");
+        LastName.sendKeys(ln + "1");
+        Email.sendKeys(mail + "1");
+        SaveButton.click();
     }
 
     public void CleanAndRestore()
     {
-        accDetailsFirstName.clear();
-        accDetailsLastName.clear();
-        accDetailsEmail.clear();
-        accDetailsFirstName.sendKeys("Eugene");
-        accDetailsLastName.sendKeys("Zaichuk");
-        accDetailsEmail.sendKeys("ezaichuk@lohika.com");
-        accDetailsSaveButton.click();
+        FirstName.clear();
+        LastName.clear();
+        Email.clear();
+        FirstName.sendKeys("Eugene");
+        LastName.sendKeys("Zaichuk");
+        Email.sendKeys("ezaichuk@lohika.com");
+        SaveButton.click();
     }
 
-    public void SavePassword()
+
+    public void ChangeGeneralData(String FName, String LName, String Mail)
     {
-        accDetailsCurrPass.sendKeys("dferfrfzrhfcjnf");
-        accDetailsNewPass.sendKeys("dferfrfzrhfcjnf1");
-        accDetailsConfirmNewPass.sendKeys("dferfrfzrhfcjnf1");
-        accDetailsSaveButton.click();
+        FirstName.clear();
+        LastName.clear();
+        Email.clear();
+        FirstName.sendKeys(FName);
+        LastName.sendKeys(LName);
+        Email.sendKeys(Mail);
+        SaveButton.click();
     }
 
-    public void RestorePassword()
+    public void ChangePassword(String Currpass, String NPass, String ConfirmPass)
     {
-        accDetailsCurrPass.sendKeys("dferfrfzrhfcjnf1");
-        accDetailsNewPass.sendKeys("dferfrfzrhfcjnf");
-        accDetailsConfirmNewPass.sendKeys("dferfrfzrhfcjnf");
-        accDetailsSaveButton.click();
+        CurrPass.sendKeys(Currpass);
+        NewPass.sendKeys(NPass);
+        ConfirmNewPass.sendKeys(ConfirmPass);
+        SaveButton.click();
     }
 
     public MyAccountDetailsPage(WebDriver driver) {

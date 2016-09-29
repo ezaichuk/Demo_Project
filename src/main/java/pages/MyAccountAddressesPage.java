@@ -12,115 +12,81 @@ public class MyAccountAddressesPage extends Page {
     //public WebElement accAddressesBillingALink;
 
     @FindBy(how = How.NAME, using = "billing_first_name")
-    public WebElement accAddressesBillingAFirstName;
+    public WebElement FirstName;
 
     @FindBy(how = How.NAME, using = "billing_last_name")
-    public WebElement accAddressesBillingALastName;
+    public WebElement LastName;
 
     @FindBy(how = How.NAME, using = "billing_company")
-    public WebElement accAddressesBillingACompanyName;
+    public WebElement CompanyName;
 
     @FindBy(how = How.NAME, using = "billing_email")
-    public WebElement accAddressesBillingAMail;
+    public WebElement Mail;
 
     @FindBy(how = How.NAME, using = "billing_phone")
-    public WebElement accAddressesBillingAPhone;
+    public WebElement Phone;
 
     //Shity dropdownlist
     @FindBy(how = How.ID, using = "select2-chosen-1")
-    public WebElement accAddressesBillingACountryDropDown;
+    public WebElement CountryDropDown;
     @FindBy(how = How.CLASS_NAME, using = "select2-input")
-    public WebElement accAddressesBillingACountryDropDownInput;
+    public WebElement CountryDropDownInput;
     @FindBy(how = How.CLASS_NAME, using = "select2-result-label")
-    public WebElement accAddressesBillingACountryDropDownOption;
+    public WebElement CountryDropDownOption;
     //
 
     @FindBy(how = How.NAME, using = "billing_address_1")
-    public WebElement accAddressesBillingAAddress1;
+    public WebElement Address1;
 
     @FindBy(how = How.NAME, using = "billing_address_2")
-    public WebElement accAddressesBillingAAddress2;
+    public WebElement Address2;
 
     @FindBy(how = How.NAME, using = "billing_city")
-    public WebElement accAddressesBillingACity;
+    public WebElement City;
 
     @FindBy(how = How.NAME, using = "billing_state")
-    public WebElement accAddressesBillingACounty;
+    public WebElement County;
 
     @FindBy(how = How.NAME, using = "billing_postcode")
-    public WebElement accAddressesBillingAZip;
+    public WebElement Zip;
 
     @FindBy(how = How.NAME, using = "save_address")
-    public WebElement accAddressesBillingASaveButton;
+    public WebElement SaveButton;
 
 
-    public void ChangeBillingAddress(){
-
-        accAddressesBillingAFirstName.clear();
-        accAddressesBillingALastName.clear();
-        accAddressesBillingACompanyName.clear();
-        accAddressesBillingAMail.clear();
-        accAddressesBillingAPhone.clear();
-        accAddressesBillingAAddress1.clear();
-        accAddressesBillingAAddress2.clear();
-        accAddressesBillingACity.clear();
-        accAddressesBillingACounty.clear();
-        accAddressesBillingAZip.clear();
-
-        accAddressesBillingAFirstName.sendKeys("ez1");
-        accAddressesBillingALastName.sendKeys("11");
-        accAddressesBillingACompanyName.sendKeys("Lohika1");
-        accAddressesBillingAMail.sendKeys("ezaichuk@lohika.com1");
-        accAddressesBillingAPhone.sendKeys("12341");
-
-        //Working with shity dropdownlist
-        accAddressesBillingACountryDropDown.click();
-        accAddressesBillingACountryDropDownInput.sendKeys("Uganda");
-        accAddressesBillingACountryDropDownOption.click();
-        //
-
-        accAddressesBillingAAddress1.sendKeys("Odessa city1");
-        accAddressesBillingAAddress2.sendKeys("1 Bunina str.1");
-        accAddressesBillingACity.sendKeys("Odessa1");
-        accAddressesBillingACounty.sendKeys("Besarabia1");
-        accAddressesBillingAZip.sendKeys("650001");
-
-        accAddressesBillingASaveButton.click();
-    }
-
-    public void RestorePreviousValues()
+    public void ChangeBillingAddress(String FName, String LName, String CName, String Email, String Ph, String Countr,
+                                     String A1, String A2, String C, String Count, String Postc)
     {
+        FirstName.clear();
+        LastName.clear();
+        CompanyName.clear();
+        Mail.clear();
+        Phone.clear();
+        Address1.clear();
+        Address2.clear();
+        City.clear();
+        County.clear();
+        Zip.clear();
 
-        accAddressesBillingAFirstName.clear();
-        accAddressesBillingALastName.clear();
-        accAddressesBillingACompanyName.clear();
-        accAddressesBillingAMail.clear();
-        accAddressesBillingAPhone.clear();
-        accAddressesBillingAAddress1.clear();
-        accAddressesBillingAAddress2.clear();
-        accAddressesBillingACity.clear();
-        accAddressesBillingACounty.clear();
-        accAddressesBillingAZip.clear();
-
-        accAddressesBillingAFirstName.sendKeys("ez");
-        accAddressesBillingALastName.sendKeys("1");
-        accAddressesBillingACompanyName.sendKeys("Lohika");
-        accAddressesBillingAMail.sendKeys("ezaichuk@lohika.com");
-        accAddressesBillingAPhone.sendKeys("1234");
+        FirstName.sendKeys(FName);
+        LastName.sendKeys(LName);
+        CompanyName.sendKeys(CName);
+        Mail.sendKeys(Email);
+        Phone.sendKeys(Ph);
 
         //Working with shity dropdownlist
-        accAddressesBillingACountryDropDown.click();
-        accAddressesBillingACountryDropDownInput.sendKeys("Ukraine");
-        accAddressesBillingACountryDropDownOption.click();
+        CountryDropDown.click();
+        CountryDropDownInput.sendKeys(Countr);
+        CountryDropDownOption.click();
         //
 
-        accAddressesBillingAAddress1.sendKeys("Odessa city");
-        accAddressesBillingAAddress2.sendKeys("1 Bunina str.");
-        accAddressesBillingACity.sendKeys("Odessa");
-        accAddressesBillingACounty.sendKeys("Besarabia");
-        accAddressesBillingAZip.sendKeys("65000");
+        Address1.sendKeys(A1);
+        Address2.sendKeys(A2);
+        City.sendKeys(C);
+        County.sendKeys(Count);
+        Zip.sendKeys(Postc);
 
-        accAddressesBillingASaveButton.click();
+        SaveButton.click();
     }
 
     public MyAccountAddressesPage(WebDriver driver) {

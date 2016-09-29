@@ -39,15 +39,18 @@ public class MyAccountDetails extends BaseTest {
     myAccPage.Open(baseUrl);
     myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf");
     myAccPage.OpenAccountDetails();
-    accountDetailsPage.SaveGeneralData();
+    //Changing General Data
+    accountDetailsPage.ChangeGeneralData("Eugene1","Zaichuk1","ezaichuk@lohika.com1");
 
     myAccPage.OpenAccountDetails();
 
-    assertTrue(accountDetailsPage.accDetailsFirstName.getAttribute("value").contains("Eugene1"), "First Name was saved successfully");
-    assertTrue(accountDetailsPage.accDetailsLastName.getAttribute("value").contains("Zaichuk1"), "Last Name was saved successfully");
-    assertTrue(accountDetailsPage.accDetailsEmail.getAttribute("value").contains("ezaichuk@lohika.com1"), "Email was saved successfully");
+    assertTrue(accountDetailsPage.FirstName.getAttribute("value").contains("Eugene1"), "First Name was saved successfully");
+    assertTrue(accountDetailsPage.LastName.getAttribute("value").contains("Zaichuk1"), "Last Name was saved successfully");
+    assertTrue(accountDetailsPage.Email.getAttribute("value").contains("ezaichuk@lohika.com1"), "Email was saved successfully");
 
-    accountDetailsPage.CleanAndRestore();
+    //Restoring General Data
+    accountDetailsPage.ChangeGeneralData("Eugene","Zaichuk","ezaichuk@lohika.com");
+
     myAccPage.Open(baseUrl);
     myAccPage.SignOut();
   }
@@ -58,13 +61,17 @@ public class MyAccountDetails extends BaseTest {
     myAccPage.Open(baseUrl);
     myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf");
     myAccPage.OpenAccountDetails();
-    accountDetailsPage.SavePassword();
+    //Changing password to the new one
+    accountDetailsPage.ChangePassword("dferfrfzrhfcjnf", "dferfrfzrhfcjnf1", "dferfrfzrhfcjnf1");
     myAccPage.SignOut();
 
     myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf1");
     assertTrue(driver.getPageSource().contains("not Eugene Zaichuk?"), "Login in by changed password is ok.");
     myAccPage.OpenAccountDetails();
-    accountDetailsPage.RestorePassword();
+
+    //Restoring password
+    accountDetailsPage.ChangePassword("dferfrfzrhfcjnf1", "dferfrfzrhfcjnf", "dferfrfzrhfcjnf");
+
     myAccPage.Open(baseUrl);
     myAccPage.SignOut();
   }
@@ -80,26 +87,30 @@ public class MyAccountDetails extends BaseTest {
     driver.navigate().to("http://qa-u1604.vlab.lohika.com:8080/my-account/edit-address/billing");
     //
 
-    accountAddressesPage.ChangeBillingAddress();
+    //Changing the Billing Address
+    accountAddressesPage.ChangeBillingAddress("ez1", "11", "Lohika1", "ezaichuk@lohika.com1", "12341", "Uganda", "Odessa city1",
+            "1 Bunina str.1", "Odessa1", "Besarabia1", "650001");
     myAccPage.OpenAddressesLink();
 
     //has to be refactored
     driver.navigate().to("http://qa-u1604.vlab.lohika.com:8080/my-account/edit-address/billing");
     //
 
-    assertTrue(accountAddressesPage.accAddressesBillingAFirstName.getAttribute("value").contains("ez1"), "First Name was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingALastName.getAttribute("value").contains("11"), "Last Name was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingACompanyName.getAttribute("value").contains("Lohika1"), "Company Name was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingAMail.getAttribute("value").contains("ezaichuk@lohika.com1"), "E-mail was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingAPhone.getAttribute("value").contains("12341"), "Phone was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingACountryDropDown.getText().contains("Uganda"), "Country was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingAAddress1.getAttribute("value").contains("Odessa city1"), "Address1 was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingAAddress2.getAttribute("value").contains("1 Bunina str.1"), "Address2 was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingACity.getAttribute("value").contains("Odessa1"), "City was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingACounty.getAttribute("value").contains("Besarabia1"), "County was saved successfully");
-    assertTrue(accountAddressesPage.accAddressesBillingAZip.getAttribute("value").contains("650001"), "PostalCode was saved successfully");
+    assertTrue(accountAddressesPage.FirstName.getAttribute("value").contains("ez1"), "First Name was saved successfully");
+    assertTrue(accountAddressesPage.LastName.getAttribute("value").contains("11"), "Last Name was saved successfully");
+    assertTrue(accountAddressesPage.CompanyName.getAttribute("value").contains("Lohika1"), "Company Name was saved successfully");
+    assertTrue(accountAddressesPage.Mail.getAttribute("value").contains("ezaichuk@lohika.com1"), "E-mail was saved successfully");
+    assertTrue(accountAddressesPage.Phone.getAttribute("value").contains("12341"), "Phone was saved successfully");
+    assertTrue(accountAddressesPage.CountryDropDown.getText().contains("Uganda"), "Country was saved successfully");
+    assertTrue(accountAddressesPage.Address1.getAttribute("value").contains("Odessa city1"), "Address1 was saved successfully");
+    assertTrue(accountAddressesPage.Address2.getAttribute("value").contains("1 Bunina str.1"), "Address2 was saved successfully");
+    assertTrue(accountAddressesPage.City.getAttribute("value").contains("Odessa1"), "City was saved successfully");
+    assertTrue(accountAddressesPage.County.getAttribute("value").contains("Besarabia1"), "County was saved successfully");
+    assertTrue(accountAddressesPage.Zip.getAttribute("value").contains("650001"), "PostalCode was saved successfully");
 
-    accountAddressesPage.RestorePreviousValues();
+    //Restoring the Billing Address
+    accountAddressesPage.ChangeBillingAddress("ez", "1", "Lohika", "ezaichuk@lohika.com", "1234", "Ukraine", "Odessa city",
+            "1 Bunina str.", "Odessa", "Besarabia", "65000");
 
     myAccPage.SignOut();
 
