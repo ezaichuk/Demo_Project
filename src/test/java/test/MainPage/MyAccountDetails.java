@@ -33,7 +33,6 @@ public class MyAccountDetails extends BaseTest {
     accountAddressesPage = PageFactory.initElements(driver, MyAccountAddressesPage.class);
   }
 
-
   @Test
   public void CheckingAccountLinks()
   {
@@ -59,7 +58,6 @@ public class MyAccountDetails extends BaseTest {
     assertTrue(driver.findElement(By.className("entry-title")).getText().contains("My account"));
 
   }
-
 
   @Test
   public void ChangingAccountDetails() {

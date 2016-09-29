@@ -56,10 +56,9 @@ public class MyAccountPage extends Page {
     @FindBy(how = How.LINK_TEXT, using = "Addresses")
     public WebElement addressesLink;
 
-
-
     @FindBy(how = How.LINK_TEXT, using = "Logout")
     public WebElement logoutLink;
+
 
     public MyAccountPage(WebDriver driver) {
         super(driver);
