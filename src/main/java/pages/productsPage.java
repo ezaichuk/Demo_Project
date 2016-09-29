@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +19,7 @@ public class ProductsPage extends Page {
     @FindBy(how = How.CSS, using = "span.onsale")
     public WebElement specialLabel;
 //
-    @FindBy(how = How.XPATH, using = "//*[@id=\"main\"]/ul/li[1]/a[1]/img")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"post-13\"]/header/h2/a")
     public WebElement itemLink;
 //
     @FindBy(how = How.CSS, using = "p.stock.in-stock")
@@ -54,9 +55,15 @@ public class ProductsPage extends Page {
     @FindBy(how = How.ID, using = "submit")
     public WebElement addReview;
 
-//    public void Open (String URL){
-//        driver.navigate().to(URL);
-//    }
+    @FindBy(how = How.XPATH, using = ".//*[@id='search-2']/form/label/input")
+    public WebElement searchField;
+
+    @FindBy(how = How.CSS, using = "div.related.products > h2")
+    public WebElement relatedProducts;
+
+    public void Open (String URL){
+        driver.navigate().to(URL);
+    }
 
     public void ClickProductsLink(){
 
@@ -91,5 +98,11 @@ public class ProductsPage extends Page {
         authorEmail.clear();
         authorEmail.sendKeys(reviewerEmail);
         addReview.click();
+    }
+
+    public void PerformSearch(String inputString) {
+        searchField.clear();
+        searchField.sendKeys(inputString);
+        searchField.sendKeys(Keys.ENTER);
     }
 }
