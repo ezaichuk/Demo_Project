@@ -1,19 +1,15 @@
 package test.AdminPages.UserManagement;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.*;
 import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.UserRoles;
-
-import java.io.IOException;
 
 public class UserCreation extends BaseTest{
 
@@ -42,7 +38,7 @@ public class UserCreation extends BaseTest{
         AddUserUsersPage();
     }
 
-    @Test(dependsOnMethods = {"AddUserPageAccess"})
+    @Test(dependsOnMethods = {"AddUserPageAccess"}, enabled = true)
     public void TestUserCreation (){
         //Creates user for each role
         WebElement username;
