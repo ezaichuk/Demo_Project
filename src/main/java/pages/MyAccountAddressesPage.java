@@ -4,12 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.Keys;
 
 public class MyAccountAddressesPage extends Page {
 
-    //@FindBy(how = How.XPATH, using = ".//div[@class='u-column1 col-1 woocommerce-Address']/")
-    //public WebElement accAddressesBillingALink;
+    @FindBy(how = How.XPATH, using = ".//*[@id='post-12']/div/div/div/div/div[1]/header/a")
+    public WebElement billingALink;
 
     @FindBy(how = How.NAME, using = "billing_first_name")
     public WebElement FirstName;
@@ -31,8 +31,6 @@ public class MyAccountAddressesPage extends Page {
     public WebElement CountryDropDown;
     @FindBy(how = How.CLASS_NAME, using = "select2-input")
     public WebElement CountryDropDownInput;
-    @FindBy(how = How.CLASS_NAME, using = "select2-result-label")
-    public WebElement CountryDropDownOption;
     //
 
     @FindBy(how = How.NAME, using = "billing_address_1")
@@ -77,7 +75,7 @@ public class MyAccountAddressesPage extends Page {
         //Working with shity dropdownlist
         CountryDropDown.click();
         CountryDropDownInput.sendKeys(Countr);
-        CountryDropDownOption.click();
+        CountryDropDownInput.sendKeys(Keys.ENTER);
         //
 
         Address1.sendKeys(A1);
