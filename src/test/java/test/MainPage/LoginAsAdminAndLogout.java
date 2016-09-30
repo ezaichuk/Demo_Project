@@ -3,7 +3,9 @@ package test.MainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.mustache.StringChunk;
 import pages.AdminPage;
 import pages.LoginPage;
 import pages.MainPage;
@@ -24,10 +26,11 @@ public class LoginAsAdminAndLogout extends BaseTest {
     }
 
     @Test
-    public void LoginAsAdminAndLogout (){
+    @Parameters({"adminUsername", "adminPassword"})
+    public void LoginAsAdminAndLogout (String username, String password){
         OpenMainPage();
         ClickLoginUrl();
-        AdminLogin();
+        AdminLogin(username, password);
         Logout();
     }
 
@@ -44,9 +47,9 @@ public class LoginAsAdminAndLogout extends BaseTest {
     }
 
     @Step
-    public void AdminLogin() {
-        loginPage.LoginAs("QA","test");
-        Assert.assertTrue(adminPage.getTitle().contains("Dashboard"),"Verify login made as Admin user.");
+    public void AdminLogin(String username, String password) {
+        loginPage.LoginAs(username, password);
+        Assert.assertTrue(adminPage.getTitle().contains("Dashboard"),"Verify login made as administrator user.");
     }
 
     @Step

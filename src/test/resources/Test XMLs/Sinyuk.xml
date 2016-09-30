@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5" parallel="false">
+    <parameter name="adminUsername" value="admin_as"></parameter>
+    <parameter name="adminPassword" value="P@ssw0rd"></parameter>
+    <parameter name="viewerUsername" value="viewer_as"></parameter>
+    <parameter name="viewerPassword" value="P@ssw0rd"></parameter>
     <test name="Main Page tests">
         <classes>
             <class name="test.MainPage.LoginAsViewerAndLogout"/>
