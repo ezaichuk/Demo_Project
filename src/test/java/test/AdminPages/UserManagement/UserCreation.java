@@ -4,12 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.*;
 import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.UserRoles;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserCreation extends BaseTest{
 
@@ -18,6 +21,8 @@ public class UserCreation extends BaseTest{
     private AdminUserCreation adminUserCreation;
     private AdminUserManagement adminUserManagement;
     private AdminUserDeletion adminUserDeletion;
+
+    private String dateStamp;
 
     @BeforeMethod
     public void initPageObjects() {
@@ -28,9 +33,22 @@ public class UserCreation extends BaseTest{
         adminUserDeletion = PageFactory.initElements(driver, AdminUserDeletion.class);
     }
 
+    @BeforeTest
+    public void getDateStamp (){
+        DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+        Date date = new Date();
+        dateStamp = dateFormat.format(date);
+    }
+
+    @BeforeMethod
+    @Parameters ({"adminUsername", "adminPassword"})
+    public void loginAsAdmin (String username, String password){
+        loginPage.Open(baseUrl);
+        loginPage.LoginAs(username, password);
+    }
+
     @Test
     public void AddUserPageAccess (){
-        AdminLogin();
         AddUserLeftPanel();
         adminPage.actionOnMenu("Dashboard", true);
         AddUserTopMenu();
@@ -38,23 +56,24 @@ public class UserCreation extends BaseTest{
         AddUserUsersPage();
     }
 
-    @Test(dependsOnMethods = {"AddUserPageAccess"}, enabled = true)
+    @Test(dependsOnMethods = {"AddUserPageAccess"})
     public void TestUserCreation (){
         //Creates user for each role
+        AddUserLeftPanel();
         WebElement username;
         for (UserRoles role : UserRoles.values()){
-            adminUserCreation.CreateUser("test_" + role.value(),
-                    "test_" + role.value() + "@test.com",
-                    "test",
+            adminUserCreation.CreateUser(dateStamp + "_" + role.value(),
+                    dateStamp + "_" + role.value() + "@test.com",
+                    dateStamp,
                     role.value(),
                     "www." + role.value() + ".com",
                     role.value(),
                     true,
                     role.value());
             //do fast verify
-            adminUserManagement.DoSearch("test_" + role.value());
+            adminUserManagement.DoSearch(dateStamp + "_" + role.value());
             username = adminUserManagement.userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/strong/a"));
-            Assert.assertTrue(username.getText().contains("test_" + role.value()), "Verify user " + "test_" + role.value() + " created");
+            Assert.assertTrue(username.getText().contains(dateStamp + "_" + role.value()), "Verify user " + dateStamp + "_" + role.value() + " created");
 
             //create next user
             adminUserManagement.addNewElement.click();
@@ -66,35 +85,26 @@ public class UserCreation extends BaseTest{
 
     @Test(dependsOnMethods = {"TestUserCreation"}, priority = 0)
     public void DeleteSingleUser (){
-        AdminLogin();
-        String usertodel = "test_author";
+        String userToDel = dateStamp + "_" + UserRoles.AUTHOR.value();
         adminPage.actionOnMenu("Users", true);
-        Assert.assertTrue(adminUserManagement.DeleteUser(usertodel), "Specify user for deletion.");
-        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(usertodel), "Verify right user specified for deletion.");
+        Assert.assertTrue(adminUserManagement.DeleteUser(userToDel), "Specify user for deletion.");
+        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(userToDel), "Verify right user specified for deletion.");
         adminUserDeletion.SubmitDeletion();
         Assert.assertTrue(adminUserManagement.message.getText().contains("User deleted."), "Verify \"User deleted.\" message appeared");
-        adminUserManagement.DoSearch(usertodel);
+        adminUserManagement.DoSearch(userToDel);
         Assert.assertTrue(adminUserManagement.searchMessage.getText().contains("No users found."), "Verify deleted user not found.");
     }
 
     @Test(dependsOnMethods = {"TestUserCreation"}, priority = 1)
     public void DeleteSeveralUsers (){
-        AdminLogin();
-        String userstodel = "test_";
+        String usersToDel = dateStamp + "_";
         adminPage.actionOnMenu("Users", true);
-        Assert.assertTrue(adminUserManagement.DeleteUsers(userstodel), "Specify users for deletion.");
-        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(userstodel), "Verify right users specified for deletion.");
+        Assert.assertTrue(adminUserManagement.DeleteUsers(usersToDel), "Specify users for deletion.");
+        Assert.assertTrue(adminUserDeletion.usersToDelete.getText().contains(usersToDel), "Verify right users specified for deletion.");
         adminUserDeletion.SubmitDeletion();
         Assert.assertTrue(adminUserManagement.message.getText().contains("users deleted."), "Verify \"User deleted.\" message appeared");
-        adminUserManagement.DoSearch(userstodel);
+        adminUserManagement.DoSearch(usersToDel);
         Assert.assertTrue(adminUserManagement.searchMessage.getText().contains("No users found."), "Verify deleted user not found.");
-    }
-
-    @Step
-    public void AdminLogin() {
-        loginPage.Open(baseUrl);
-        loginPage.LoginAs("QA","test");
-        Assert.assertTrue(adminPage.getTitle().contains("Dashboard"), "Verify login made as Admin user.");
     }
 
     @Step
@@ -112,5 +122,6 @@ public class UserCreation extends BaseTest{
     public void AddUserUsersPage(){
         adminPage.actionOnMenu("Users", true);
         adminUserManagement.addNewElement.click();
+        Assert.assertTrue (adminUserCreation.headerofTab.getText().contains("Add New User"), "Verify scenario navigated to Add New User page.");
     }
 }

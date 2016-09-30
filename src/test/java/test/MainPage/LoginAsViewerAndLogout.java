@@ -3,6 +3,7 @@ package test.MainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
@@ -21,11 +22,12 @@ public class LoginAsViewerAndLogout extends BaseTest {
     }
 
     @Test
-    public void LoginAsViewerAndLogout(){
+    @Parameters({"viewerUsername", "viewerPassword"})
+    public void LoginAsViewerAndLogout(String username, String password){
 
         OpenMainPage();
         ClickLoginUrl();
-        ViewerLogin();
+        ViewerLogin(username, password);
         Logout();
     }
 
@@ -42,9 +44,9 @@ public class LoginAsViewerAndLogout extends BaseTest {
     }
 
     @Step
-    public void ViewerLogin() {
-        loginPage.LoginAs("viewer_as","S2MV%R7*NPCwG7qhCDt8MPQq");
-        Assert.assertTrue(mainPage.myAccountContent.getText().contains("Viewer AS"),"Verify login made as Viewer AS.");
+    public void ViewerLogin(String username, String password) {
+        loginPage.LoginAs(username, password);
+        Assert.assertTrue(mainPage.myAccountContent.getText().contains("Hello"),"Verify login made as viewer user.");
     }
 
     @Step
