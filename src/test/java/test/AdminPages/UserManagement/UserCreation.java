@@ -10,7 +10,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.UserRoles;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
