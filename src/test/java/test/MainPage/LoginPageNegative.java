@@ -4,6 +4,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
@@ -26,11 +27,10 @@ public class LoginPageNegative extends BaseTest{
 
     @Test
     @Step
-    public void InvalidPassword (){
+    @Parameters ({"adminUsername"})
+    public void InvalidPassword (String username){
         //ERROR: The password you entered for the username QA is incorrect.
         //link : Lost your password?
-
-        String username = "QA";
 
         loginPage.Open(baseUrl);
         loginPage.LoginAs(username, "1111");
@@ -42,8 +42,8 @@ public class LoginPageNegative extends BaseTest{
 
     @Test(dependsOnMethods = {"InvalidPassword"})
     @Step
-    public void PasswordRecovery () {
-        //placeholder
+    @Parameters ({"adminUsername"})
+    public void PasswordRecovery (String username) {
         loginPage.LostPasswordClick();
         Assert.assertTrue(myAccountPage.entryTitle.getText().contains("Lost Password"), "Verify user got redirected on Lost Password page.");
 
@@ -51,7 +51,7 @@ public class LoginPageNegative extends BaseTest{
         myAccountPage.buttonResetPassword.click();
         Assert.assertTrue(myAccountPage.loginErrorMessage.getText().contains("Invalid username or e-mail."), "Verify user can\'t get password for nonexistent account.");
 
-        myAccountPage.inputUsernameEmail.sendKeys("QA");
+        myAccountPage.inputUsernameEmail.sendKeys(username);
         myAccountPage.buttonResetPassword.click();
         Assert.assertTrue(myAccountPage.validMessage.getText().contains("Password reset email has been sent."), "Verify password reset email has been sent.");
     }
