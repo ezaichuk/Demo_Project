@@ -28,8 +28,7 @@ public class MyAccountLogin extends BaseTest {
   }
 
   @Test
-  public void LoginAndLogutSuccess() {
-
+  public void LoginAndLogoutSuccess() {
     myAccPage.Open(baseUrl);
 
     //Login Operation
@@ -37,20 +36,11 @@ public class MyAccountLogin extends BaseTest {
     assertTrue(driver.getPageSource().contains("Eugene Zaichuk"), "Login in by Evgeniy Zaichuk.");
 
     //Logout Operation
-    //Ugly Thread.Sleep but can't cope with "Element is not clickable" exception. Has to be resolved in the future
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     myAccPage.SignOut();
     assertFalse(driver.getPageSource().contains("Howdy"), "Sign out is succesfull");
 
     //Login negative
     myAccPage.LoginAs("ezaichuk2","dferfrfzrhfcjnf");
     assertTrue(driver.findElement(By.xpath(".//ul[@class='woocommerce-error']")).getText().contains("ERROR: Invalid username."), "Login in by non existed user");
-
-   }
-
-
+  }
 }

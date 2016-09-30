@@ -1,10 +1,7 @@
 package test.MainPage;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MainPage;
@@ -12,9 +9,6 @@ import pages.MyAccountAddressesPage;
 import pages.MyAccountDetailsPage;
 import pages.MyAccountPage;
 import test.BaseTest;
-import util.WebDriverHelper;
-
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class MyAccountDetails extends BaseTest {
@@ -109,18 +103,14 @@ public class MyAccountDetails extends BaseTest {
     myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf");
     myAccPage.OpenAddressesLink();
 
-    //has to be refactored
-    driver.navigate().to("http://qa-u1604.vlab.lohika.com:8080/my-account/edit-address/billing");
-    //
+    accountAddressesPage.billingALink.click();
 
     //Changing the Billing Address
     accountAddressesPage.ChangeBillingAddress("ez1", "11", "Lohika1", "ezaichuk@lohika.com1", "12341", "Uganda", "Odessa city1",
             "1 Bunina str.1", "Odessa1", "Besarabia1", "650001");
-    myAccPage.OpenAddressesLink();
 
-    //has to be refactored
-    driver.navigate().to("http://qa-u1604.vlab.lohika.com:8080/my-account/edit-address/billing");
-    //
+    myAccPage.OpenAddressesLink();
+    accountAddressesPage.billingALink.click();
 
     assertTrue(accountAddressesPage.FirstName.getAttribute("value").contains("ez1"), "First Name was saved successfully");
     assertTrue(accountAddressesPage.LastName.getAttribute("value").contains("11"), "Last Name was saved successfully");
