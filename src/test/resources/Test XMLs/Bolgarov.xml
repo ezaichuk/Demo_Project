@@ -5,13 +5,29 @@
     <parameter name="password" value="test"></parameter>
     <parameter name="tabName" value="Posts"></parameter>
     <parameter name="addNewPostHeaderText" value="Add New Post"></parameter>
-    <test name="AdminPagePostsTab ">
+    <parameter name="addNewPostHeaderTextEditPost" value="Edit Post"></parameter>
+    <parameter name="addNewElementText" value="Add New"></parameter>
+    <parameter name="titleToAddNewPost" value="Post added via  "></parameter>
+    <parameter name="bodyToAddNewPost" value="Some text in the post. Added via  "></parameter>
+    <parameter name="publishTextForMessageBox" value="Post published. View post"></parameter>
+    <parameter name="updateTextForMessageBox" value="Post updated. View post"></parameter>
+    <parameter name="loggedOutMessage" value="You are now logged out."></parameter>
+    <parameter name="statusFieldText" value="Published"></parameter>
+    <parameter name="titlePromptText" value="Enter title here"></parameter>
+    <parameter name="insertMediaButton" value="Add Media"></parameter>
+    <parameter name="wordCountLabel" value="Word count: 0"></parameter>
+    <parameter name="postStatusLabel" value="Status:"></parameter>
+    <parameter name="publishButtonText" value="Publish"></parameter>
+    <parameter name="updateButtonText" value="Update"></parameter>
+
+    <test name="Add new post tests ">
         <classes>
-           <class name="test.AdminPages.SelectAdminPostsTab"/> <!--  -->
-           <class name="test.AdminPages.PostTabAddNewPostByButton"/>
-           <class name="test.AdminPages.PostTabAddNewPostByUrl"/>
-           <class name="test.AdminPages.PostTabAddNewPostByButtonViaPostsMenu"/>
-           <class name="test.AdminPages.PostTabAddNewPostByButtonViaPlusMenu"/>
+           <class name="test.AdminPages.Posts.PostsTabCheckAllSubMenuItems"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButton"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByUrl"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPostsMenu"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPostsMenuMouseOver"/>
+           <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPlusMenu"/>
         </classes>
     </test>
 </suite>

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,19 +36,19 @@ public class AdminPage extends Page {
     @FindBy(how = How.XPATH, using = ".//*[@id='menu-users']/ul/li[3]/a")
     public WebElement leftPanelAddUser;
 
-    public AdminPage(WebDriver driver) {
-        super(driver);
-    }
+    @FindBy(how = How.ID, using = "menu-posts") //BG
+    public WebElement postsMenu;
+
+    @FindBy(how = How.ID, using = "menu-dashboard") //BG
+    public WebElement dashboardMenu;
+
+    @FindBys({@FindBy(xpath = ".//div[@class='wp-menu-name']")})
+    public  List<WebElement> namesOfTab;
 
     public void ClickLogoutLink(){
         WebDriverHelper.MouseOver(myAccountMenu,driver);
         logoutLink.click();
     }
-
-    @FindBys({@FindBy(xpath = ".//div[@class='wp-menu-name']")})
-//    @CacheLookup
-    public  List<WebElement> namesOfTab;
-
     public void clickOnNeededTab (String nameOfTab)  {
         for(WebElement webElement: namesOfTab){
             if (webElement.getText().trim().contains(nameOfTab)) {
@@ -69,6 +70,16 @@ public class AdminPage extends Page {
         }
     }
 
+    public void SubMenuItem(WebElement webElement, String searchedSubMenuItem){
+        List<WebElement> listOfItemInSubMenu = webElement.findElements(By.xpath(".//ul/.//a"));
+        for(WebElement item : listOfItemInSubMenu){
+            if (item.getText().equals(searchedSubMenuItem)){
+                item.click();
+                break;
+            }
+        }
+    }
+
     public void AddUserTopMenu (){
         WebDriverHelper.MouseOver(plusMenu, driver);
         addUserTopMenu.click();
@@ -77,5 +88,9 @@ public class AdminPage extends Page {
     public void AddUserLeftPanel (){
         actionOnMenu("Users", true);
         leftPanelAddUser.click();
+    }
+
+    public AdminPage(WebDriver driver) {
+        super(driver);
     }
 }

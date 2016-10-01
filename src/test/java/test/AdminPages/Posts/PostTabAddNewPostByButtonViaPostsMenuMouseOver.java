@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * Created by dbolgarov on 9/25/2016.
  */
-public class PostTabAddNewPostByButtonViaPostsMenu extends BaseTest {
+public class PostTabAddNewPostByButtonViaPostsMenuMouseOver extends BaseTest {
     private LoginPage loginPage;
     private AdminPage adminPage;
     private AdminPageInnerTab adminPageInnerTab;
@@ -40,7 +40,7 @@ public class PostTabAddNewPostByButtonViaPostsMenu extends BaseTest {
     @Parameters({"addNewPostHeaderText"})
     @Test(dependsOnMethods = {"loginToAdminPart"}, priority = 2)
     public void clickOnNewPostViaPostsMenu(String addNewPostHeaderText) {
-        adminPage.postsMenu.click();
+        WebDriverHelper.MouseOver(adminPage.postsMenu,driver);
         adminPage.addNewPostViaPostsMenu.click();
         assertThat(" Add New Post Dialog didn't open",adminPageInnerTab.headerofTab.getText(), is(addNewPostHeaderText));
     }

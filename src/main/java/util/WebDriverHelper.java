@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WebDriverHelper {
 
@@ -40,7 +43,7 @@ public class WebDriverHelper {
         //        Actions action = new Actions(driver);                     // old code, works only with FF
         //        action.moveToElement(webElement).build().perform();       // old code, works only with FF
         String javaScript = "var ourClass = arguments[0].getAttribute('class');"+
-                "ourClass = ourClass + ' hover';"+
+                "ourClass = ourClass + ' hover opensub';"+
                 "arguments[0].setAttribute('class', ourClass);";
         ((JavascriptExecutor)driver).executeScript(javaScript, webElement);
     }
@@ -62,6 +65,34 @@ public class WebDriverHelper {
 //            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", webElement);
         }
     }
+
+
+    /**
+     *
+     * @param dateInString - String with date that should  be  convert using  inputFormatterStr filter
+     * @param inputFormatterStr - Date and Time Patterns string. Can be null. In this case it will be used "MMM d, yyyy @ HH:mm"
+     * @param outputFormatterStr- Date and Time Patterns string. Can be null. In this case it will be used "yyyy/MM/dd h:mm:ss a"
+     * @return String with date after using outputFormatterStr filter
+     */
+    public static String stringToDateConvert(String dateInString, String inputFormatterStr, String outputFormatterStr){
+        if (inputFormatterStr == null || inputFormatterStr.trim().isEmpty()){
+            inputFormatterStr = "MMM d, yyyy @ HH:mm";}
+        if (outputFormatterStr == null || outputFormatterStr.trim().isEmpty()){
+            outputFormatterStr= "yyyy/MM/dd h:mm:ss a";}
+    SimpleDateFormat inputFormatter = new SimpleDateFormat(inputFormatterStr);
+    SimpleDateFormat outputFormatter = new SimpleDateFormat(outputFormatterStr);
+        try {
+            Date date = inputFormatter.parse(dateInString);
+//            System.out.println(date);
+//            System.out.println(outputFormatter.format(date));
+            return outputFormatter.format(date);//.toLowerCase();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "!!!! Failed to convert !!!!";
+        }
+    }
+
+
 
 }
 
