@@ -13,6 +13,44 @@ public class AdminPageInnerTab extends Page {
     @FindBy(xpath = ".//div[contains(@class,'wrap')]/h1")
     public WebElement headerofTab;
 
+    @FindBy(xpath = ".//div[contains(@class,'wrap')]/.//*[@class='all']/.//span")
+    public WebElement countOfAllPosts;
+
+    @FindBy(xpath = ".//div[contains(@class,'wrap')]/.//*[@class='mine']/.//span")
+    public WebElement countOfMinePosts;
+
+    @FindBy(xpath = ".//div[contains(@class,'wrap')]/.//*[@class='publish']/.//span")
+    public WebElement countOfPublishedPosts;
+
+    @FindBy(xpath = ".//div[contains(@class,'wrap')]/.//*[@class='trash']/.//span")
+    public WebElement countOfPostsInTrash;
+
+    @FindBy(xpath = ".//*[@id='cb-select-all-1']")
+    public WebElement checkboxSelectAllPosts;
+
+    @FindBy(xpath = ".//select[@id='bulk-action-selector-top']")
+    public WebElement selectorBulkActions;
+
+    @FindBy(xpath = ".//*[@id='doaction']")
+    public WebElement applyButtonInPosts;
+
+    @FindBy(xpath = ".//*[@id='delete_all']")
+    public WebElement emptyTrashButtonInPosts;
+
+    @FindBy(xpath = ".//*[@class='displaying-num']")
+    public WebElement countOfItemsInPosts;
+
+
+
+    @FindBy(xpath = ".//*[@id='search-submit']")
+    public WebElement searchButtonInPosts;
+
+    @FindBy(xpath = ".//*[@id='post-query-submit']")
+    public WebElement filterButtonInPosts;
+
+
+
+
     @FindBy(xpath = ".//a[@class='page-title-action']")
     public WebElement addNewElement;
 

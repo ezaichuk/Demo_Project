@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -92,7 +93,19 @@ public class WebDriverHelper {
         }
     }
 
+    public static void selectOptionInDropdownMenu(WebElement webElement, String visibleText){
+        Select dropdown = new Select(webElement);
+        dropdown.selectByVisibleText(visibleText);
+    }
 
-
+    public static boolean isElementPresent(WebElement webElement){
+        try {
+            webElement.isEnabled();
+            return true;
+        }
+        catch (org.openqa.selenium.NoSuchElementException e){
+            return false;
+        }
+    }
 }
 

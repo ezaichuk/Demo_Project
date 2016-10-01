@@ -3,6 +3,13 @@
 <suite name="AdminPagePostsTab" verbose="5" parallel="false">
     <parameter name="login" value="QA"></parameter>
     <parameter name="password" value="test"></parameter>
+    <parameter name="submenuAllPostsItem" value="All Posts"></parameter>
+    <parameter name="selectorBulkActionsMoveToTrash" value="Move to Trash"></parameter>
+    <test name="Initial tests">
+        <classes>
+            <class name="test.AdminPages.Posts.CleaningAllPostsBeforeRunOthersTests"/>
+        </classes>
+    </test>
     <parameter name="tabName" value="Posts"></parameter>
     <parameter name="addNewPostHeaderText" value="Add New Post"></parameter>
     <parameter name="addNewPostHeaderTextEditPost" value="Edit Post"></parameter>
@@ -19,7 +26,6 @@
     <parameter name="postStatusLabel" value="Status:"></parameter>
     <parameter name="publishButtonText" value="Publish"></parameter>
     <parameter name="updateButtonText" value="Update"></parameter>
-
     <test name="Add new post tests ">
         <classes>
            <class name="test.AdminPages.Posts.PostsTabCheckAllSubMenuItems"/>
@@ -30,4 +36,5 @@
            <class name="test.AdminPages.Posts.PostTabAddNewPostByButtonViaPlusMenu"/>
         </classes>
     </test>
+
 </suite>
