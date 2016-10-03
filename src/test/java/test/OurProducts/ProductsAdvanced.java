@@ -46,8 +46,8 @@ public class ProductsAdvanced extends BaseTest {
 
     @Step
     public void ViewerLogin() {
-        loginPage.LoginAs("viewer_as", "S2MV%R7*NPCwG7qhCDt8MPQq");
-        Assert.assertTrue(mainPage.myAccountContent.getText().contains("Viewer AS"),"Verify login made as Viewer AS.");
+        loginPage.LoginAs("viewer_as", "P@ssw0rd");
+        Assert.assertTrue(mainPage.myAccountContent.getText().contains("not Viewer AS"),"Verify login made as Viewer AS.");
     }
 
     @Step
