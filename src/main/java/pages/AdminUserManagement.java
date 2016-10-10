@@ -1,13 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-import util.WebDriverHelper;
+
 import java.util.List;
 
 public class AdminUserManagement extends Page {
@@ -39,7 +38,7 @@ public class AdminUserManagement extends Page {
     @FindBy(how = How.XPATH, using = ".//*[@id='the-list']/tr/td")
     public WebElement searchMessage;
 
-    public void DoSearch (String search){
+    public void doSearch(String search){
         userSearch.clear();
         userSearch.sendKeys(search);
         searchButton.click();
@@ -49,34 +48,35 @@ public class AdminUserManagement extends Page {
         super(driver);
     }
 
-    public boolean DeleteUser(String username) {
-        WebElement userlink;
-        WebElement delete;
-        DoSearch(username);
+    public boolean deleteUser(String username) {
+        doSearch(username);
         if (userList.size() != 1) {
             return false;
         }else{
             selectAllCheckbox.click();
-            new Select(bulkActions).selectByValue("delete");
+            selectBulkAction("delete");
             submitActionButton.click();
-            /*userlink = userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']"));
-            WebDriverHelper.MouseOver(userlink, driver);
-            delete = userList.get(0).findElement(By.xpath(".//td[@data-colname='Username']/div/span[2]/a"));
-            delete.click();*/
             return true;
         }
     }
 
-    public boolean DeleteUsers(String filter) {
-        DoSearch(filter);
+    public boolean deleteUsers(String filter) {
+        doSearch(filter);
         if (userList.size() == 0) {
             return false;
         }else{
             selectAllCheckbox.click();
-            new Select(bulkActions).selectByValue("delete");
+            selectBulkAction("delete");
             submitActionButton.click();
             return true;
         }
     }
 
+    public void addNewElement(){
+        addNewElement.click();
+    }
+
+    public void selectBulkAction (String action){
+        new Select(bulkActions).selectByValue(action);
+    }
 }

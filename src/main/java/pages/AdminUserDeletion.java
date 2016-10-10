@@ -13,7 +13,7 @@ public class AdminUserDeletion extends Page {
     @FindBy(how = How.XPATH, using = ".//*[@id='updateusers']/div/ul/li")
     public WebElement usersToDelete;
 
-    public void SubmitDeletion (){
+    public void submitDeletion(){
         submitButton.click();
     }
 

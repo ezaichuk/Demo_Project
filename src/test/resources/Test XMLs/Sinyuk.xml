@@ -15,7 +15,7 @@
     </test>
     <test name="Admin Page tests">
         <classes>
-            <class name="test.AdminPages.UserManagement.UserCreation"/>
+            <class name="test.AdminPages.UserManagement.UserCreateAndDelete"/>
         </classes>
     </test>
 </suite>

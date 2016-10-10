@@ -1,11 +1,10 @@
 package test.MainPage;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.MainPage;
-import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 
 public class CheckTopLinksMainPage extends BaseTest {
@@ -18,27 +17,31 @@ public class CheckTopLinksMainPage extends BaseTest {
     }
 
     @Test
-    @Step
     public void CheckTopLinks() {
+
+        SoftAssert softAssert = new SoftAssert();
+
         mainPage.Open(baseUrl);
 
         mainPage.ClickHomeLink();
-        Assert.assertTrue(mainPage.getTitle().contains("Simple shop"), "Verify Home tab is opened.");
+        softAssert.assertTrue(mainPage.getTitle().contains("Simple shop"), "Home tab is opened.");
 
         mainPage.ClickCartLink();
-        Assert.assertTrue(mainPage.getTitle().contains("Cart"),"Verify Cart tab opened.");
+        softAssert.assertTrue(mainPage.getTitle().contains("Cart"),"Cart tab opened.");
 
         mainPage.ClickCheckoutLink();
-        Assert.assertFalse(mainPage.getTitle().contains("Checkout"), "Verify Checkout tab not opened because there are no goods in cart.");
+        softAssert.assertFalse(mainPage.getTitle().contains("Checkout"), "Checkout tab not opened, because there are no goods in cart.");
 
         mainPage.ClickMyAccountLink();
-        Assert.assertTrue(mainPage.getTitle().contains("My account"), "Verify My Account tab is opened.");
+        softAssert.assertTrue(mainPage.getTitle().contains("My account"), "My Account tab is opened.");
 
         mainPage.ClickNewsLink();
-        Assert.assertTrue(mainPage.getTitle().contains("News"), "Verify News tab is opened.");
+        softAssert.assertTrue(mainPage.getTitle().contains("News"), "News tab is opened.");
 
         mainPage.ClickOurProductsLink();
-        Assert.assertTrue(mainPage.getTitle().contains("Products"), "Verify Our Products tab is opened.");
+        softAssert.assertTrue(mainPage.getTitle().contains("Products"), "Our Products tab is opened.");
+
+        softAssert.assertAll();
     }
 
 }
