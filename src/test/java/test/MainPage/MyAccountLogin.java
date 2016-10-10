@@ -35,7 +35,7 @@ public class MyAccountLogin extends BaseTest {
     myAccPage.LoginAs("ezaichuk","dferfrfzrhfcjnf");
     assertTrue(driver.getPageSource().contains("Eugene Zaichuk"), "Login in by Evgeniy Zaichuk.");
 
-    //Logout Operation
+    //doLogout Operation
     myAccPage.SignOut();
     assertFalse(driver.getPageSource().contains("Howdy"), "Sign out is succesfull");
 

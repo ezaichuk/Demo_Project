@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import pages.AdminPage;
 import pages.LoginPage;
 import pages.MainPage;
-import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 
 public class LoginAsAdminAndLogout extends BaseTest {
@@ -26,36 +25,20 @@ public class LoginAsAdminAndLogout extends BaseTest {
 
     @Test
     @Parameters({"adminUsername", "adminPassword"})
-    public void LoginAsAdminAndLogout (String username, String password){
-        OpenMainPage();
-        ClickLoginUrl();
-        AdminLogin(username, password);
-        Logout();
-    }
+    public void loginAsAdminAndLogout (String username, String password){
 
-    @Step
-    public void OpenMainPage() {
         mainPage.Open(baseUrl);
-        Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"), "Verify Main page opened.");
-    }
+        Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"), "Main page opened.");
 
-    @Step
-    public void ClickLoginUrl() {
         mainPage.ClickLoginLink();
-        Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");
-    }
+        Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Login page opened.");
 
-    @Step
-    public void AdminLogin(String username, String password) {
         loginPage.LoginAs(username, password);
-        Assert.assertTrue(adminPage.getTitle().contains("Dashboard"),"Verify login made as administrator user.");
-    }
+        Assert.assertTrue(adminPage.getTitle().contains("Dashboard"),"Login made as administrator user.");
 
-    @Step
-    public void Logout() {
         adminPage.ClickLogoutLink();
-        Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Verify Login page opened.");
-        Assert.assertTrue(loginPage.loginMessage.getText().contains("You are now logged out"),"Verify user logged out.");
-    }
+        Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Login page opened.");
+        Assert.assertTrue(loginPage.loginMessage.getText().contains("You are now logged out"),"User logged out.");
 
+    }
 }

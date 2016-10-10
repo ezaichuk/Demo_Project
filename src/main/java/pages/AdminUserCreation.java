@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-import util.UserRoles;
 
 public class AdminUserCreation extends Page {
 
@@ -55,17 +54,17 @@ public class AdminUserCreation extends Page {
         super(driver);
     }
 
-    public void SelectRole (String role){
+    public void selectRole(String role){
         new Select(roleSelect).selectByValue(role);
     }
 
-    public void CreateUser (String username, String email){
+    public void createUser(String username, String email){
         this.username.sendKeys(username);
         this.email.sendKeys(email);
         createUserButton.click();
     }
 
-    public void CreateUser (String username, String email, String password){
+    public void createUser(String username, String email, String password){
         showPasswordButton.click();
         //Entering password two times, because of Firefox issue, that only first letter entered
         for (int i=0; i<2; i++){
@@ -73,25 +72,25 @@ public class AdminUserCreation extends Page {
             this.password.sendKeys(password);
         }
         useWeakPassword.click();
-        CreateUser (username, email);
+        createUser(username, email);
     }
 
-    public void CreateUser (String username,
-                            String email,
-                            String firstname,
-                            String lastname,
-                            String website,
-                            String password,
-                            Boolean enableNotification,
-                            String role) {
+    public void createUser(String username,
+                           String email,
+                           String firstname,
+                           String lastname,
+                           String website,
+                           String password,
+                           Boolean enableNotification,
+                           String role) {
         this.firstname.sendKeys(firstname);
         this.lastname.sendKeys(lastname);
         this.website.sendKeys(website);
-        SelectRole(role);
+        selectRole(role);
         if (sendNotification.isSelected() != enableNotification ){
             sendNotification.click();
         }
-        CreateUser(username, email, password);
+        createUser(username, email, password);
     }
 
 }

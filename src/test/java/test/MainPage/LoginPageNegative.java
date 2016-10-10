@@ -3,16 +3,12 @@ package test.MainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
-import ru.yandex.qatools.allure.annotations.Step;
 import test.BaseTest;
 import util.WebDriverHelper;
-
-import java.io.IOException;
 
 public class LoginPageNegative extends BaseTest{
 
@@ -26,30 +22,23 @@ public class LoginPageNegative extends BaseTest{
     }
 
     @Test
-    @Step
     @Parameters ({"adminUsername"})
-    public void InvalidPassword (String username){
-        //ERROR: The password you entered for the username QA is incorrect.
-        //link : Lost your password?
-
+    public void invalidPassword(String username){
         loginPage.Open(baseUrl);
         loginPage.LoginAs(username, "1111");
-        WebDriverHelper.WaitTillVisible(loginPage.loginErrorMessage, driver);
-        System.out.println(loginPage.loginErrorMessage.getText());
         Assert.assertTrue(loginPage.loginErrorMessage.getText().contains("ERROR: The password you entered for the username " + username + " is incorrect."),
-                "Verify wrong password message appeared");
+                "Wrong password message appeared");
     }
 
-    @Test(dependsOnMethods = {"InvalidPassword"})
-    @Step
+    @Test(dependsOnMethods = {"invalidPassword"})
     @Parameters ({"adminUsername"})
-    public void PasswordRecovery (String username) {
+    public void passwordRecovery(String username) {
         loginPage.LostPasswordClick();
-        Assert.assertTrue(myAccountPage.entryTitle.getText().contains("Lost Password"), "Verify user got redirected on Lost Password page.");
+        Assert.assertTrue(myAccountPage.entryTitle.getText().contains("Lost Password"), "User got redirected on Lost Password page.");
 
         myAccountPage.inputUsernameEmail.sendKeys("1111");
         myAccountPage.buttonResetPassword.click();
-        Assert.assertTrue(myAccountPage.loginErrorMessage.getText().contains("Invalid username or e-mail."), "Verify user can\'t get password for nonexistent account.");
+        Assert.assertTrue(myAccountPage.loginErrorMessage.getText().contains("Invalid username or e-mail."), "User can\'t get password for nonexistent account.");
 
         myAccountPage.inputUsernameEmail.sendKeys(username);
         myAccountPage.buttonResetPassword.click();
@@ -57,14 +46,10 @@ public class LoginPageNegative extends BaseTest{
     }
 
     @Test
-    @Step
-    public void InvalidUsername (){
-        //ERROR: Invalid username.
+    public void invalidUsername(){
         loginPage.Open(baseUrl);
         loginPage.LoginAs("1111", "1111");
-        WebDriverHelper.WaitTillVisible(loginPage.loginErrorMessage, driver);
-        System.out.println(loginPage.loginErrorMessage.getText());
         Assert.assertTrue(loginPage.loginErrorMessage.getText().contains("ERROR: Invalid username."),
-                "Verify invalid username error message appeared");
+                "Invalid username error message appeared");
     }
 }

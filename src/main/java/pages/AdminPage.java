@@ -70,12 +70,12 @@ public class AdminPage extends Page {
         }
     }
 
-    public void AddUserTopMenu (){
+    public void addUserTopMenu(){
         WebDriverHelper.MouseOver(plusMenu, driver);
         addUserTopMenu.click();
     }
 
-    public void AddUserLeftPanel (){
+    public void addUserLeftPanel(){
         actionOnMenu("Users", true);
         leftPanelAddUser.click();
     }
