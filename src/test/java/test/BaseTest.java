@@ -1,6 +1,7 @@
 package test;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
@@ -56,5 +57,6 @@ public class BaseTest {
         EventListener eventListener = new EventListener();
         driver.register(eventListener);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }
 }
