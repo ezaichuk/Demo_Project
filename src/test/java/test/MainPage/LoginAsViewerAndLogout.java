@@ -23,7 +23,6 @@ public class LoginAsViewerAndLogout extends BaseTest {
     @Test
     @Parameters({"viewerUsername", "viewerPassword"})
     public void loginAsViewerAndLogout(String username, String password){
-
         mainPage.Open(baseUrl);
         Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"),"Main page opened.");
 
@@ -36,6 +35,5 @@ public class LoginAsViewerAndLogout extends BaseTest {
         mainPage.ClickLogoutLink();
         Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Login page opened.");
         Assert.assertTrue(loginPage.loginMessage.getText().contains("You are now logged out"),"User logged out.");
-
     }
 }

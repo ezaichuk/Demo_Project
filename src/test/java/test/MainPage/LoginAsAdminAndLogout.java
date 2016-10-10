@@ -26,7 +26,6 @@ public class LoginAsAdminAndLogout extends BaseTest {
     @Test
     @Parameters({"adminUsername", "adminPassword"})
     public void loginAsAdminAndLogout (String username, String password){
-
         mainPage.Open(baseUrl);
         Assert.assertTrue(mainPage.getTitle().contains("virtual-shop"), "Main page opened.");
 
@@ -39,6 +38,5 @@ public class LoginAsAdminAndLogout extends BaseTest {
         adminPage.ClickLogoutLink();
         Assert.assertTrue(loginPage.getTitle().contains("Log In"),"Login page opened.");
         Assert.assertTrue(loginPage.loginMessage.getText().contains("You are now logged out"),"User logged out.");
-
     }
 }

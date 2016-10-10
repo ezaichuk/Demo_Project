@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
 import test.BaseTest;
-import util.WebDriverHelper;
 
 public class LoginPageNegative extends BaseTest{
 
